@@ -2,9 +2,11 @@
 A future npm package to make and execute commands in oracledb.
 
 ## How to?
-Before use use jubarte-oracledb, see [this section](#Notes)
+Before use use jubarte-oracledb, see the section above
 
-One day [examples directory](examples) will have many samples. 
+One day, (this week), [examples directory](examples) will have some samples. 
+
+** IF YOU WORK WITH MULTIPLE DATABASES DO NOT USE. SEE ISSUES FOR MORE INFO **
 
 ## Notes
 You need to know some things to use this package.
@@ -25,12 +27,12 @@ You need to know some things to use this package.
     * will be avaliable in v0.2
 
 3. Next Releases
-    * see [features checkList](#Implementations checkList) to know what is comming
+    * see the features list above to know what is comming
 
 ## Tests
 See [test directory](test/).
 
-## Features checkList
+## Features
 
 - :small_orange_diamond: Handle connections
 - :small_orange_diamond: Call statements
