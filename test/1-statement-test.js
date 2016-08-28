@@ -11,7 +11,8 @@ describe('statement buider', function() {
     });
 
     it('should get sysdate from oracle', function(done) {
-        this.timeout(5000);
+        this.timeout(10000);
+        
         let command = 'SELECT SYSDATE FROM DUAL',
             fake = statement.create(command).execute({
                 user: process.env.ORACLE_USER, 
@@ -25,6 +26,8 @@ describe('statement buider', function() {
     });
 
     it('should execute a sql command and send a parameter array', function(done) {
+        this.timeout(10000);
+
         let p1 = 'Noe',
             p2 = 45
             command = 'SELECT :name, :age FROM DUAL',
@@ -46,6 +49,8 @@ describe('statement buider', function() {
     });
 
     it('should execute a sql command and send parameters as objects', function(done) {
+        this.timeout(10000);
+        
         let p1 = 'Johan',
             p2 = 45
             command = 'SELECT :name, :age FROM DUAL',
