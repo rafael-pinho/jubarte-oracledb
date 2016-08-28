@@ -16,3 +16,7 @@ You need to know some important things to use this package.
     * jubarte-oracledb always use a pool of connections to work
     * but you can configure your connection pool
     * and you always need to end a statement so jubart will know that is time to close connection
+
+3. Transactions
+    * not implemented
+    * will be avaliable in the second release (v0.2)
