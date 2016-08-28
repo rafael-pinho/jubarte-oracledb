@@ -1,11 +1,18 @@
 # jubarte-oracledb
-A npm package to make and execute commands in oracledb
+A future npm package to make and execute commands in oracledb.
 
 ## How to?
-You can see many samples in (examples directory)[examples].
+One day [examples directory](examples) will have many samples.
 
 ## Notes
-You need to know some important things to use this package
+You need to know some important things to use this package.
 
-1. ConnectionPool
+1. Oracledb
+   * this package uses the official driver to connect to oracle
+   * for more info see node-oracledb documentation
+
+2. Connections
+    * do not worry about get a connection, jubarte-oracledb manages connections
     * jubarte-oracledb always use a pool of connections to work
+    * but you can configure your connection pool
+    * and you always need to end a statement so jubart will know that is time to close connection
