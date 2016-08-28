@@ -24,5 +24,8 @@
   "devDependencies": {
     "assert": "^1.4.1",
     "mocha": "^3.0.2"
+  },
+  "dependencies": {
+    "oracledb": "^1.11.0"
   }
 }
