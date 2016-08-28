@@ -2,9 +2,11 @@
 A future npm package to make and execute commands in oracledb.
 
 ## How to?
-Before use use jubarte-oracledb, see [this section](#Notes)
+Before use use jubarte-oracledb, see the section above
 
-One day [examples directory](examples) will have many samples. 
+One day, (this week), [examples directory](examples) will have some samples. 
+
+### In the current version there is no suport for multiple databases. After configuration is done all requests will execute in the same database. I will implement this feature in v0.2 ###
 
 ## Notes
 You need to know some things to use this package.
@@ -25,15 +27,16 @@ You need to know some things to use this package.
     * will be avaliable in v0.2
 
 3. Next Releases
-    * see [features checkList](#Implementations checkList) to know what is comming
+    * see the features list above to know what is comming
 
 ## Tests
 See [test directory](test/).
 
-## Features checkList
+## Features
 
-- :small_orange_diamond: Handle connections
-- :small_orange_diamond: Call statements
+- :small_blue_diamond: Handle connections
+- :small_blue_diamond: Call statements
+- :small_red_triangle: Multiple databases support
 - :small_red_triangle: Transactions
 - :small_red_triangle_down: Event Emitter
 - :small_red_triangle_down: Status Panel
