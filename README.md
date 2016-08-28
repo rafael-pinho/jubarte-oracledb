@@ -33,10 +33,15 @@ See [test directory](test/).
 ## Features checkList
 
   :small_orange_diamond: Handle connections
+  
   :small_orange_diamond: Call statements
+  
   :small_red_triangle: Transactions
+  
   :small_red_triangle_down: Event Emitter
+  
   :small_red_triangle_down: Status Panel
+  
   :small_red_triangle_down: Simple ORM
 
 | simbol | status |
