@@ -2,7 +2,7 @@
 A future npm package to make and execute commands in oracledb.
 
 ## How to?
-Before use use jubarte-oracledb, see [this section](##Notes)
+Before use use jubarte-oracledb, see [this section](#Notes)
 
 One day [examples directory](examples) will have many samples. 
 
@@ -25,26 +25,26 @@ You need to know some things to use this package.
     * will be avaliable in v0.2
 
 3. Next Releases
-    * see [features checkList](##Implementations checkList) to know what is comming
+    * see [features checkList](#Implementations checkList) to know what is comming
 
 ## Tests
 See [test directory](test/).
 
 ## Features checkList
 
-- :white_medium_small_square: Handle connections
-- :white_medium_small_square: Call statements
-- :small_red_triangle: Transactions
-- :small_orange_diamond: Event Emitter
-- :small_orange_diamond: Status Panel
-- :small_orange_diamond: Simple ORM
+  :small_orange_diamond: Handle connections
+  :small_orange_diamond: Call statements
+  :small_red_triangle: Transactions
+  :small_red_triangle_down: Event Emitter
+  :small_red_triangle_down: Status Panel
+  :small_red_triangle_down: Simple ORM
 
 | simbol | status |
-|---|---|
-| :white_check_mark:: | done |
-| :white_medium_small_square: | in development |
+|:---:|---|
+| :small_blue_diamond: | done |
+| :small_orange_diamond: | in development |
 | :small_red_triangle: | next release feature |
-| :small_orange_diamond: | one day feature |
+| :small_red_triangle_down: | one day feature |
 | :heavy_exclamation_mark: | warning |
 
 ## Contributing
