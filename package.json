@@ -2,7 +2,7 @@
   "name": "jubarte-oracledb",
   "version": "0.1.0",
   "description": "a package to make and call commands in oracledb",
-  "main": "/lib/index.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "mocha"
   },
