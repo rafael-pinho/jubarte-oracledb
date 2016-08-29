@@ -6,7 +6,7 @@ Before use use jubarte-oracledb, see the section above
 
 One day, (this week), [examples directory](examples) will have some samples. 
 
-** IF YOU WORK WITH MULTIPLE DATABASES DO NOT USE. SEE ISSUES FOR MORE INFO **
+### In the current version there is no suport for multiple databases. After configuration is done all requests will execute in the same database. I will implement this feature in v0.2 ###
 
 ## Notes
 You need to know some things to use this package.
@@ -36,6 +36,7 @@ See [test directory](test/).
 
 - :small_orange_diamond: Handle connections
 - :small_orange_diamond: Call statements
+- :small_red_triangle: Multiple databases support
 - :small_red_triangle: Transactions
 - :small_red_triangle_down: Event Emitter
 - :small_red_triangle_down: Status Panel
