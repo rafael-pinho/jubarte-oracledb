@@ -34,8 +34,8 @@ See [test directory](test/).
 
 ## Features
 
-- :small_orange_diamond: Handle connections
-- :small_orange_diamond: Call statements
+- :small_blue_diamond: Handle connections
+- :small_blue_diamond: Call statements
 - :small_red_triangle: Multiple databases support
 - :small_red_triangle: Transactions
 - :small_red_triangle_down: Event Emitter
