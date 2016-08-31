@@ -26,6 +26,7 @@
     "mocha": "^3.0.2"
   },
   "dependencies": {
-    "oracledb": "^1.11.0"
+    "oracledb": "^1.11.0",
+    "promise": "^7.1.1"
   }
 }
