@@ -12,7 +12,7 @@ describe('statement buider', function() {
 
     it('should get sysdate from oracle', function(done) {
         this.timeout(10000);
-        
+
         let command = 'SELECT SYSDATE FROM DUAL',
             fake = statement.create(command).execute({
                 user: process.env.ORACLE_USER, 
