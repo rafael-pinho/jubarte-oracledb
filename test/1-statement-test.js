@@ -1,5 +1,7 @@
 let assert = require('assert'),
-    statement = require('../lib/statement/statement.js');
+    initializer = require('../lib/oracle/initializer.js'),
+    statement = require('../lib/statement/statement.js'),
+    Promise = require('bluebird');
 
 describe('statement buider', function() {
     it('should have a sql command', function(done) {
@@ -18,10 +20,14 @@ describe('statement buider', function() {
                 user: process.env.ORACLE_USER, 
                 password: process.env.ORACLE_PASSWORD, 
                 connectString: process.env.ORACLE_CONNECTION_STRING 
-            }, (err, data) => {
-                assert.equal(err, null);
+            })
+            .then((data) => {
                 assert.ok(data.rows[0][0]);
                 done(null);
+            })
+            .catch((e) => {
+                console.log(e)
+                done(e);
             });
     });
 
@@ -39,16 +45,20 @@ describe('statement buider', function() {
                             user: process.env.ORACLE_USER, 
                             password: process.env.ORACLE_PASSWORD, 
                             connectString: process.env.ORACLE_CONNECTION_STRING 
-                        }, (err, data) => {
-                            assert.equal(err, null);
+                        })                            
+                        .then(function(data){
                             assert.ok(data.rows[0]);
                             assert.equal(data.rows[0][0], p1);
                             assert.equal(data.rows[0][1], p2);
                             done(null);
+                        })
+                        .catch(function(err){
+                            assert(!err)
+                            done(err);
                         });
     });
 
-    it('should execute a sql command and send parameters as objects', function(done) {
+    it('should execute a sql command and send parameters as an object', function(done) {
         this.timeout(10000);
         
         let p1 = 'Johan',
@@ -64,12 +74,16 @@ describe('statement buider', function() {
                             user: process.env.ORACLE_USER, 
                             password: process.env.ORACLE_PASSWORD, 
                             connectString: process.env.ORACLE_CONNECTION_STRING 
-                        }, (err, data) => {
-                            assert.equal(err, null);
+                        })
+                        .then(function(data){
                             assert.ok(data.rows[0]);
                             assert.equal(data.rows[0][0], p1);
                             assert.equal(data.rows[0][1], p2);
                             done(null);
+                        })
+                        .catch(function(err){
+                            assert(!err)
+                            done(err);
                         });
     });
 });

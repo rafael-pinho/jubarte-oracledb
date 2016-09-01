@@ -18,11 +18,17 @@ describe('initialize database and execute a command', function() {
         });
         
         let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement.create(command).execute((err, data) => {
-                assert.equal(err, null);
-                assert(data.rows[0].SYSDATE);
-                done(null);
-            });
+            fake = statement
+                        .create(command)
+                        .execute()
+                        .then((data) => {
+                            assert(data.rows[0].SYSDATE);
+                            done(null);
+                        })
+                        .catch(function(err){
+                            assert(!err)
+                            done(err);
+                        });
     });
 
     it('should use credentials and return result as an array', function(done) {
@@ -35,13 +41,19 @@ describe('initialize database and execute a command', function() {
         }).setOracleDefaults({
             outFormat: oracledb.ARRAY
         });
-        
+
         let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement.create(command).execute((err, data) => {
-                assert.equal(err, null);
-                assert(data.rows[0][0]);
-                done(null);
-            });
+            fake = statement
+                        .create(command)
+                        .execute()
+                        .then((data) => {
+                            assert(data.rows[0][0]);
+                            done(null);
+                        })
+                        .catch(function(err){
+                            assert(!err)
+                            done(err);
+                        });
     });
 
     it('should not connect', function(done) {
@@ -56,10 +68,17 @@ describe('initialize database and execute a command', function() {
             outFormat: oracledb.ARRAY
         });
         
-        let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement.create(command).execute((err, data) => {
-                assert(err);
+        let command = 'SELECT SYSDATE FROM DUAL';
+        statement
+            .create(command)
+            .execute()
+            .then((data) => {
+                assert(!data);
                 done(null);
+            })
+            .catch(function(err){
+                assert(err)
+                done();
             });
     });
 });
