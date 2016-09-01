@@ -38,7 +38,7 @@ See [test directory](test/).
 - :small_blue_diamond: Call statements
 - :small_blue_diamond: Automatic CURSOR fetch
 - :small_orange_diamond: Multiple databases support
-- :small_red_triangle: Transactions
+- :small_orange_diamond: Transactions
 - :small_red_triangle_down: Event Emitter
 - :small_red_triangle_down: Status Panel
 - :small_red_triangle_down: Simple ORM
