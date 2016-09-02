@@ -9,7 +9,7 @@ describe('initialize database and execute a command', function() {
     it('should use credentials and return result as an object', function(done) {
         this.timeout(10000);
         
-        initializer.setCredentials({
+        initializer.addConnectionPool({
             user: process.env.ORACLE_USER, 
             password: process.env.ORACLE_PASSWORD, 
             connectString: process.env.ORACLE_CONNECTION_STRING 
@@ -34,7 +34,7 @@ describe('initialize database and execute a command', function() {
     it('should use credentials and return result as an array', function(done) {
         this.timeout(10000);
         
-        initializer.setCredentials({
+        initializer.addConnectionPool({
             user: process.env.ORACLE_USER, 
             password: process.env.ORACLE_PASSWORD, 
             connectString: process.env.ORACLE_CONNECTION_STRING 
@@ -59,7 +59,7 @@ describe('initialize database and execute a command', function() {
     it('should not connect', function(done) {
         this.timeout(10000);
         
-        initializer.setCredentials({
+        initializer.addConnectionPool({
             user: 'nobody', 
             password: process.env.ORACLE_PASSWORD, 
             connectString: process.env.ORACLE_CONNECTION_STRING,

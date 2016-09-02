@@ -1,5 +1,4 @@
 let assert = require('assert'),
-    initializer = require('../lib/oracle/initializer.js'),
     statement = require('../lib/statement/statement.js'),
     Promise = require('bluebird');
 
