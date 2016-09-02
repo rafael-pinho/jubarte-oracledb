@@ -6,7 +6,7 @@ Before use use jubarte-oracledb, see the section above
 
 One day, (this week), [examples directory](examples) will have some samples. 
 
-### In the current version there is no suport for multiple databases. After configuration is done all requests will execute in the same database. I will implement this feature in v1.1 ###
+### In current version v1.3 multiple database support and transactions are avaliable. Beware, I'm making some tests in production. In next 3 days - 3/9, 4/9 and 5/9 - I will put more samples. I will make more tests too. After 7/9 jubarte-oracledb will be production ready (or not but I realy belive in this).###
 
 ## Notes
 You need to know some things to use this package.
@@ -23,10 +23,16 @@ You need to know some things to use this package.
     * always call statement's 'done' method so jubart will know that is time to close connection
 
 3. Transactions
-    * not implemented
-    * will be avaliable in v0.2
+    * just give the command: jubarte makes commits, roolbacks and closes connections for you
+    
+3. Fetch Cursors
+    * automatic fetchs cursors for you with you want
+     
+4. No more callbacks
+    * no more callback hell
+    * jubarte uses bluebird lib to work with promises
 
-3. Next Releases
+5. Next Releases
     * see the features list above to know what is comming
 
 ## Tests
@@ -37,9 +43,10 @@ See [test directory](test/).
 - :small_blue_diamond: Handle connections
 - :small_blue_diamond: Call statements
 - :small_blue_diamond: Automatic CURSOR fetch
-- :small_orange_diamond: Multiple databases support
-- :small_orange_diamond: Transactions
-- :small_red_triangle_down: Event Emitter
+- :small_blue_diamond: Promises instead of callbacks
+- :small_blue_diamond::heavy_exclamation_mark: Multiple databases support
+- :small_blue_diamond::heavy_exclamation_mark: Transactions
+- :small_red_triangle: Event Emitter
 - :small_red_triangle_down: Status Panel
 - :small_red_triangle_down: Simple ORM
 
