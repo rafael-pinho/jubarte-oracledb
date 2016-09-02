@@ -1,5 +1,5 @@
 let jubarte = require('jubarte-oracledb');
-jubarte.initialize.setCredentials({
+jubarte.initialize.addConnectionPool({
     user: process.env.ORACLE_USER, 
     password: process.env.ORACLE_PASSWORD, 
     connectString: process.env.ORACLE_CONNECTION_STRING 
