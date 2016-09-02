@@ -26,7 +26,6 @@ describe('statement buider', function() {
                 done(null);
             })
             .catch((e) => {
-                console.log(e)
                 done(e);
             });
     });

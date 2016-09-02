@@ -1,19 +1,37 @@
 let assert = require('assert'),
-    initializer = require('../lib/oracle/initializer.js'),
-    configuration = require('../lib/oracle/configuration.js');
+    oracledb = require('oracledb'),
+    databaseConfiguration = require('../lib/database/databaseConfiguration.js'),
+    poolConfiguration = require('../lib/database/poolConfiguration.js');
 
 
 describe('database configuration', function() {
-    it('should use default setting and change credentials', function(done) {
-        initializer.setCredentials({
-            user: process.env.ORACLE_USER, 
-            password: process.env.ORACLE_PASSWORD, 
-            connectString: process.env.ORACLE_CONNECTION_STRING 
-        });
+    it('should set oracledb configuration', function(done) {
+        let oldValue = oracledb.maxRows;
+        databaseConfiguration.set({ maxRows: 10 });
         
-        assert.equal(configuration.pool().user, process.env.ORACLE_USER);
-        assert.equal(configuration.pool().password, process.env.ORACLE_PASSWORD);
-        assert.equal(configuration.pool().connectString, process.env.ORACLE_CONNECTION_STRING);
+        assert.notEqual(oldValue, oracledb.maxRows);
+        done();
+    });
+
+    it('should set oracledb configuration', function(done) {
+        let configuration = {
+            poolAlias: 'default',
+            poolMax: 10,
+            poolMin: 4,
+            poolIncrement: 2, 
+            poolTimeout: 60,
+            queueRequests: true,
+            queueTimeout: 5,
+            stmtCacheSize: 30,
+            user: null, 
+            password: null, 
+            connectString: null
+        };
+
+        poolConfiguration.add(configuration);
+        
+        let pools = poolConfiguration.get();
+        assert(pools.default, configuration);
         done();
     });
 });
