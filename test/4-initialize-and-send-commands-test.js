@@ -1,15 +1,14 @@
 let assert = require('assert'),
     oracledb = require('oracledb'),
-    initializer = require('../lib/oracle/initializer.js'),
-    configuration = require('../lib/oracle/configuration.js'),
+    initializer = require('../lib/database/initializer.js'),
     statement = require('../lib/statement/statement.js');
-
 
 describe('initialize database and execute a command', function() {
     it('should use credentials and return result as an object', function(done) {
         this.timeout(10000);
         
         initializer.addConnectionPool({
+            poolAlias: 'pool1',
             user: process.env.ORACLE_USER, 
             password: process.env.ORACLE_PASSWORD, 
             connectString: process.env.ORACLE_CONNECTION_STRING 
@@ -20,14 +19,14 @@ describe('initialize database and execute a command', function() {
         let command = 'SELECT SYSDATE FROM DUAL',
             fake = statement
                         .create(command)
-                        .execute()
+                        .execute('pool1')
                         .then((data) => {
                             assert(data.rows[0].SYSDATE);
                             done(null);
                         })
-                        .catch(function(err){
-                            assert(!err)
-                            done(err);
+                        .catch(function(e){
+                            assert(!e)
+                            done(e);
                         });
     });
 
@@ -35,6 +34,7 @@ describe('initialize database and execute a command', function() {
         this.timeout(10000);
         
         initializer.addConnectionPool({
+            poolAlias: 'pool2',
             user: process.env.ORACLE_USER, 
             password: process.env.ORACLE_PASSWORD, 
             connectString: process.env.ORACLE_CONNECTION_STRING 
@@ -45,14 +45,14 @@ describe('initialize database and execute a command', function() {
         let command = 'SELECT SYSDATE FROM DUAL',
             fake = statement
                         .create(command)
-                        .execute()
+                        .execute('pool2')
                         .then((data) => {
                             assert(data.rows[0][0]);
                             done(null);
                         })
-                        .catch(function(err){
-                            assert(!err)
-                            done(err);
+                        .catch(function(e){
+                            assert(!e)
+                            done(e);
                         });
     });
 
@@ -71,13 +71,13 @@ describe('initialize database and execute a command', function() {
         let command = 'SELECT SYSDATE FROM DUAL';
         statement
             .create(command)
-            .execute()
+            .execute('notdefault')
             .then((data) => {
                 assert(!data);
                 done(null);
             })
-            .catch(function(err){
-                assert(err)
+            .catch(function(e){
+                assert(e)
                 done();
             });
     });

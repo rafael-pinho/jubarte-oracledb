@@ -1,4 +1,5 @@
 let assert = require('assert'),
+    oracledb = require('oracledb'),
     statement = require('../lib/statement/statement.js'),
     Promise = require('bluebird');
 
@@ -13,24 +14,28 @@ describe('statement buider', function() {
 
     it('should get sysdate from oracle', function(done) {
         this.timeout(10000);
+        oracledb.outFormat = oracledb.ARRAY;
 
         let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement.create(command).execute({
-                user: process.env.ORACLE_USER, 
-                password: process.env.ORACLE_PASSWORD, 
-                connectString: process.env.ORACLE_CONNECTION_STRING 
-            })
-            .then((data) => {
-                assert.ok(data.rows[0][0]);
-                done(null);
-            })
-            .catch((e) => {
-                done(e);
-            });
+            fake = statement.create(command)
+                .execute({
+                    user: process.env.ORACLE_USER, 
+                    password: process.env.ORACLE_PASSWORD, 
+                    connectString: process.env.ORACLE_CONNECTION_STRING 
+                })
+                .then((data) => {
+                    assert.ok(data.rows[0][0]);
+                    done(null);
+                })
+                .catch((e) => {
+                    console.log(e)
+                    done(e);
+                });
     });
 
     it('should execute a sql command and send a parameter array', function(done) {
         this.timeout(10000);
+        oracledb.outFormat = oracledb.ARRAY;
 
         let p1 = 'Noe',
             p2 = 45
@@ -50,14 +55,16 @@ describe('statement buider', function() {
                             assert.equal(data.rows[0][1], p2);
                             done(null);
                         })
-                        .catch(function(err){
-                            assert(!err)
-                            done(err);
+                        .catch(function(e){
+                            console.log(e)
+                            assert(!e)
+                            done(e);
                         });
     });
 
     it('should execute a sql command and send parameters as an object', function(done) {
         this.timeout(10000);
+        oracledb.outFormat = oracledb.ARRAY;
         
         let p1 = 'Johan',
             p2 = 45
@@ -79,9 +86,9 @@ describe('statement buider', function() {
                             assert.equal(data.rows[0][1], p2);
                             done(null);
                         })
-                        .catch(function(err){
-                            assert(!err)
-                            done(err);
+                        .catch(function(e){
+                            assert(!e)
+                            done(e);
                         });
     });
 });

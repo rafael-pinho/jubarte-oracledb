@@ -30,8 +30,8 @@ describe('database configuration', function() {
 
         poolConfiguration.add(configuration);
         
-        let pools = poolConfiguration.get();
-        assert(pools.default, configuration);
+        let pools = poolConfiguration.get('default');
+        assert(pools, configuration);
         done();
     });
 });
