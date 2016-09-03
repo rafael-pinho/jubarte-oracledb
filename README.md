@@ -2,11 +2,13 @@
 A future npm package to make and execute commands in oracledb.
 
 ## How to?
-Before use use jubarte-oracledb, see the section above
+Before use use jubarte-oracledb, see the section above. To view implementation details go to [examples directory](examples). 
 
-One day, (this week), [examples directory](examples) will have some samples. 
+### In current version v1.3 multiple database support and transactions are avaliable. I make some tests in production and works by now. If you have some issues, please, open an issue or send a pull request. 
 
-### In current version v1.3 multiple database support and transactions are avaliable. Beware, I'm making some tests in production. In next 3 days - 3/9, 4/9 and 5/9 - I will put more samples. I will make more tests too. After 7/9 jubarte-oracledb will be production ready (or not but I realy belive in this).###
+In next days more samples will be avaliable. I will make more tests and an docker image to make it easier to test. 
+
+Between 7/9 and 11/09 jubarte-oracledb will become production ready.###
 
 ## Notes
 You need to know some things to use this package.
@@ -28,18 +30,14 @@ You need to know some things to use this package.
 3. Fetch Cursors
     * automatic fetchs cursors for you with you want
      
-4. No more callbacks
+4. Promises instead of callbacks
     * no more callback hell
     * jubarte uses bluebird lib to work with promises
 
 5. Next Releases
     * see the features list above to know what is comming
 
-## Tests
-See [test directory](test/).
-
 ## Features
-
 - :small_blue_diamond: Handle connections
 - :small_blue_diamond: Call statements
 - :small_blue_diamond: Automatic CURSOR fetch
@@ -57,6 +55,9 @@ See [test directory](test/).
 | :small_red_triangle: | next release feature |
 | :small_red_triangle_down: | one day feature |
 | :heavy_exclamation_mark: | warning |
+
+## Tests
+See [test directory](test/).
 
 ## Contributing
 Open issues, pull requests, add tests, new ideas or whatever...contributors are welcome.
