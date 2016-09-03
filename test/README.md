@@ -1,5 +1,5 @@
 # Instructions
-Before run tests you need to some steps
+Before run tests you need to do some steps
 
 ### I work in a docker image to make this easier to run. It will be avaliable soon ###
 
