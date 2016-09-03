@@ -1,6 +1,8 @@
 # Instructions
 Before run tests you need to some steps
 
+### I work in a docker image to make this easier to run ###
+
 ## Oracledb
 The npm package oracledb needs to be installed in your machine. For more instructions about install, see oracledb documentation.
 
