@@ -14,12 +14,48 @@ In jubarte you just need to:
         .execute()
 ```
 
-The result is in data.rows
+After execute, the result will be in data.rows
 
 ```
     jubarte
         jubarte
         .statement.create('SELECT SYSDATE FROM DUAL')
+        .execute()
+        .then((data) => {
+            res.status(200).send(data.rows);
+        })
+        .catch((err) => {
+            res.status(500).send(err.toString());
+        })
+```
+
+Now, if you have parameters you can:
+
+```
+    jubarte
+        .statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL')
+        .addParameters(10)
+        .execute()
+```
+
+or:
+
+
+```
+    jubarte
+        .statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL')
+        .addParameters()
+            .name('PARAMETER').value(10)
+        .execute()
+```
+
+After execute, the result will be in data.rows too
+
+```
+    jubarte
+        .statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL')
+        .addParameters()
+            .name('PARAMETER').value(10)
         .execute()
         .then((data) => {
             res.status(200).send(data.rows);
