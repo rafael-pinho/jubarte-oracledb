@@ -1,6 +1,7 @@
 {
-  "name": "1-simple-select",
-  "description": "Show how to execute a simple select statement with jubarte",
+  "version": "1.0.0",
+  "name": "execute-procedure",
+  "description": "teach how to execute a procedure",
   "main": "app.js",
   "author": "Rafael Pinho",
   "license": "ISC",
