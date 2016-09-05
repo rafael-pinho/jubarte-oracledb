@@ -6,7 +6,7 @@ let assert = require('assert'),
 
 
 describe('database connection', function() {
-    it('should return a pool', function(done) {
+    it('should return a connection pool', function(done) {
         oracledb.Promise = Promise;
 
         poolFactory
@@ -81,6 +81,7 @@ describe('database connection', function() {
             })
             .catch(function(e){
                 assert(e);
+                done(null);
             });
     });
 });

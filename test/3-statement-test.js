@@ -21,7 +21,7 @@ describe('statement buider', function() {
         assert(fake.roolback);
 
         assert.equal(fake.command, command);
-        assert.equal(fake.parameters, []);
+        assert.deepEqual(fake.parameters, []);
         
         done(null);
     });

@@ -4,8 +4,7 @@ let assert = require('assert'),
     Promise = require('bluebird');
 
 describe('statement parameters', function() {
-    it('should execute a sql command and send a parameter array', function(done) {
-        this.timeout(10000);
+    it('should execute a sql command and passing a parameter array', function(done) {
         oracledb.outFormat = oracledb.ARRAY;
 
         let p1 = 'Noe',
@@ -27,14 +26,12 @@ describe('statement parameters', function() {
                             done(null);
                         })
                         .catch(function(e){
-                            console.log(e)
                             assert(!e)
                             done(e);
                         });
     });
 
-    it('should execute a sql command and send parameters as an object', function(done) {
-        this.timeout(10000);
+    it('should execute a sql command and passing parameters as an object', function(done) {
         oracledb.outFormat = oracledb.ARRAY;
         
         let p1 = 'Johan',
