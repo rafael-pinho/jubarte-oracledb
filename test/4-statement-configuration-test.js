@@ -16,18 +16,17 @@ describe('initialize database and execute a command', function() {
             outFormat: oracledb.OBJECT
         });
         
-        let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement
-                        .create(command)
-                        .execute('pool1')
-                        .then((data) => {
-                            assert(data.rows[0].SYSDATE);
-                            done(null);
-                        })
-                        .catch(function(e){
-                            assert(!e)
-                            done(e);
-                        });
+        statement
+            .create('SELECT SYSDATE FROM DUAL')
+            .execute('pool1')
+            .then((data) => {
+                assert(data.rows[0].SYSDATE);
+                done(null);
+            })
+            .catch(function(e){
+                assert(!e)
+                done(e);
+            });
     });
 
     it('should use credentials and return result as an array', function(done) {
@@ -42,18 +41,17 @@ describe('initialize database and execute a command', function() {
             outFormat: oracledb.ARRAY
         });
 
-        let command = 'SELECT SYSDATE FROM DUAL',
-            fake = statement
-                        .create(command)
-                        .execute('pool2')
-                        .then((data) => {
-                            assert(data.rows[0][0]);
-                            done(null);
-                        })
-                        .catch(function(e){
-                            assert(!e)
-                            done(e);
-                        });
+        statement
+            .create('SELECT SYSDATE FROM DUAL')
+            .execute('pool2')
+            .then((data) => {
+                assert(data.rows[0][0]);
+                done(null);
+            })
+            .catch(function(e){
+                assert(!e)
+                done(e);
+            });
     });
 
     it('should not connect', function(done) {
@@ -68,9 +66,8 @@ describe('initialize database and execute a command', function() {
             outFormat: oracledb.ARRAY
         });
         
-        let command = 'SELECT SYSDATE FROM DUAL';
         statement
-            .create(command)
+            .create('SELECT SYSDATE FROM DUAL')
             .execute('notdefault')
             .then((data) => {
                 assert(!data);

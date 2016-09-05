@@ -54,4 +54,33 @@ describe('database connection', function() {
                 done(e);
             });
     });
+
+    it('should fail in return a connection', function(done) {
+        oracledb.Promise = Promise;
+        
+        poolFactory
+            .get({
+                poolAlias: 'default1',
+                poolMax: 10,
+                poolMin: 4,
+                poolIncrement: 2, 
+                poolTimeout: 60,
+                queueRequests: true,
+                queueTimeout: 5,
+                stmtCacheSize: 30,
+                user: 'havenoname', 
+                password: process.env.ORACLE_PASSWORD, 
+                connectString: process.env.ORACLE_CONNECTION_STRING 
+            })
+            .then(function(pool){
+                return connectionFactory.get(pool);
+            })
+            .then(function(connection){
+                assert(!connection);
+                done(connection);
+            })
+            .catch(function(e){
+                assert(e);
+            });
+    });
 });

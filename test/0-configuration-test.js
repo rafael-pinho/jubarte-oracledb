@@ -7,7 +7,7 @@ let assert = require('assert'),
 describe('database configuration', function() {
     it('should set oracledb configuration', function(done) {
         let oldValue = oracledb.maxRows;
-        databaseConfiguration.set({ maxRows: 10 });
+        databaseConfiguration.set({ maxRows: 7 });
         
         assert.notEqual(oldValue, oracledb.maxRows);
         done();
