@@ -8,7 +8,7 @@ Before use use jubarte-oracledb, see the section above. To view implementation d
 
 In next days more samples will be avaliable. I will make more tests and an docker image to make it easier to test. 
 
-Between 7/9 and 11/09 jubarte-oracledb will become production ready.###
+### Between 7/9 and 11/09 jubarte-oracledb will become production ready.###
 
 ## Notes
 You need to know some things to use this package.
