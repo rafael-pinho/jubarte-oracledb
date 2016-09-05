@@ -73,7 +73,7 @@ Let's do another sample, without cursors.
     BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;
 ```
 
-Now we will constroy our call
+Now we will construct our call
 
 ```
     jubarte
