@@ -104,4 +104,21 @@ The out parameters will stay in "data.outBinds" property.
 If you use "executeProcedure" and return a cursor, the cursor will be in "data.outBinds" too but you will need to fetch cursors by your own. 
 To know how fetch cursors see oracledb docs or ["fetchProcedure"](../../lib/statement/statement.js) function code.
 
-The "execute" function works equal "executeProcedure" but you need to pass the entire command ("BEGIN PACKAGE.PROCEDURE :PARAM; END;").
+The "execute" function works equal "executeProcedure" but you need to pass the entire command.
+
+```
+    jubarte
+        .statement.create('BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;')
+        .addParameters()
+            .name('OUTPARAMETER').direction(oracle.OUT_BIND)
+            .name('PARAMETER').value('a string value')
+        .executeProcedure()
+        .then((data) => {
+            res.status(200).send(data.outBinds.OUTPARAMETER);
+        })
+        .catch((err) => {
+            res.status(500).send(err.toString());
+        })
+```
+
+You can use "execute" but I recommend "executeProcedure" and "fetchProcedure" instead.
