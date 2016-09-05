@@ -44,8 +44,9 @@ You need to know some things to use this package.
 - :small_blue_diamond: Promises instead of callbacks
 - :small_blue_diamond::heavy_exclamation_mark: Multiple databases support
 - :small_blue_diamond::heavy_exclamation_mark: Transactions
+- :small_red_triangle: Bulk inserts
 - :small_red_triangle: Streams
-- :small_red_triangle: Event Emitter
+- :small_red_triangle_down: Event Emitter
 - :small_red_triangle_down: Status Panel
 - :small_red_triangle_down: Simple ORM
 
