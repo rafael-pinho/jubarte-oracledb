@@ -35,7 +35,7 @@ app.get('/format', function (req, res) {
         .execute()
         .then((data) => {
             res.status(200).json({
-                date: row.SYSDATE
+                date: data.rows[0].SYSDATE
             });
         })
         .catch((err) => {
