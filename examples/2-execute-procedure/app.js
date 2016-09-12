@@ -14,7 +14,7 @@ jubarte.initialize
 const express = require('express'),
     app = express();
 
-app.get('/contries', function (req, res) {
+app.get('/countries', function (req, res) {
     jubarte
         .statement.create('COUNTRIES.ALL')
         .addParameters()
@@ -29,7 +29,7 @@ app.get('/contries', function (req, res) {
         })
 });
 
-app.post('/contries', function (req, res) {
+app.post('/countries', function (req, res) {
     let command = jubarte.statement.create();
 
     command

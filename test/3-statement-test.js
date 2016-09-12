@@ -9,7 +9,6 @@ describe('statement buider', function() {
             fake = statement.create(command);
 
         assert(fake);
-        assert(fake.command);
         assert(fake.sql);
         assert(fake.command);
         assert(fake.parameters);
