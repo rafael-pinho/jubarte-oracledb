@@ -2,13 +2,17 @@
 A future npm package to make and execute commands in oracledb.
 
 ## How to?
-Before use use jubarte-oracledb, see the section above. To view implementation details go to [examples directory](examples). 
+Before use use jubarte-oracledb, see the section above. To view implementation details go to [examples directory](./examples). 
 
-### In current version v1.3 multiple database support and transactions are avaliable. I make some tests in production and works by now. If you have some issues, please, open an issue or send a pull request. 
+### I'm making tests with jubarte in production (2 node api's using it). It's ok by now and works. Follow this repository to get news about it. ###
 
-In next days more samples will be avaliable. I will make more tests and an docker image to make it easier to test. 
+### v1.3 have some bugs but I already fix, use the latest version to get this fixes. In v1.4 some implementation details change, please see [examples directory](./examples) (new implementation do not broke old implementation but is needed to release connections to be used) ###
 
-### Between 7/9 and 11/09 jubarte-oracledb will become production ready.###
+### If you have some issues, please, open an issue or send a pull request. ###
+
+### In next days more samples will be avaliable. I will make more tests and an docker image to make it easier to test. ###
+
+### Between 19/9 and 23/09 jubarte-oracledb will become production ready.###
 
 ## Notes
 You need to know some things to use this package.
