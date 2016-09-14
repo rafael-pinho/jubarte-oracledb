@@ -15,11 +15,16 @@ const express = require('express'),
     app = express();
 
 app.get('/', function (req, res) {
-    jubarte
-        .statement.create('SELECT SYSDATE FROM DUAL')
+    let statement = jubarte
+        .statement.create('SELECT SYSDATE FROM DUAL');
+    
+    statement
         .execute()
         .then((data) => {
             res.status(200).send(data.rows[0].SYSDATE);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).json({
@@ -30,13 +35,18 @@ app.get('/', function (req, res) {
 });
 
 app.get('/format', function (req, res) {
-    jubarte
-        .statement.create('SELECT SYSDATE FROM DUAL')
+    let statement = jubarte
+        .statement.create('SELECT SYSDATE FROM DUAL');
+    
+    statement
         .execute()
         .then((data) => {
             res.status(200).json({
                 date: data.rows[0].SYSDATE
             });
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).json({
@@ -47,13 +57,18 @@ app.get('/format', function (req, res) {
 });
 
 app.get('/:level', function (req, res) {
-    jubarte
-        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL')
+    let statement = jubarte
+        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL');
+    
+    statement
         .addParameters()
             .name('MAX_LEVEL').value(req.params.level)
         .execute()
         .then((data) => {
             res.status(200).json(data.rows)
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).json({
@@ -64,8 +79,10 @@ app.get('/:level', function (req, res) {
 });
 
 app.get('/:level/format', function (req, res) {
-    jubarte
-        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL')
+    let statement = jubarte
+        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL');
+    
+    statement
         .addParameters()
             .name('MAX_LEVEL').value(req.params.level)
         .execute()
@@ -76,6 +93,9 @@ app.get('/:level/format', function (req, res) {
                     level: row.LEVEL
                 }
             }))
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).json({

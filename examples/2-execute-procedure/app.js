@@ -15,14 +15,16 @@ const express = require('express'),
     app = express();
 
 app.get('/countries', function (req, res) {
-    jubarte
-        .statement.create('COUNTRIES.ALL')
-        .addParameters()
+    let statement = jubarte.statement.create('COUNTRIES.ALL');
+        statement.addParameters()
             .name('CURSOR').direction(oracledb.OUT_BIND)
             .name('NAME').value('a')
         .fetchProcedure()
         .then((data) => {
             res.status(200).send(data[0]);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).send(err.toString());
@@ -30,9 +32,9 @@ app.get('/countries', function (req, res) {
 });
 
 app.post('/countries', function (req, res) {
-    let command = jubarte.statement.create();
+    let statement = jubarte.statement.create();
 
-    command
+    statement
         .sql('COUNTRIES.INSERT')
         .addParameters()
             .name('ID').direction(oracledb.OUT_BIND)
@@ -40,6 +42,9 @@ app.post('/countries', function (req, res) {
         .executeProcedure()
         .then((data) => {
             res.status(200).send(data[0]);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).send(err.toString());
