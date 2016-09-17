@@ -5,46 +5,51 @@ let assert = require('assert'),
 
 describe('initialize database and execute a command', function() {
     it('should use credentials and return result as an object', function(done) {
-        initializer.addConnectionPool({
-            poolAlias: 'pool1',
-            user: process.env.ORACLE_USER, 
-            password: process.env.ORACLE_PASSWORD, 
-            connectString: process.env.ORACLE_CONNECTION_STRING 
-        }).setOracleDefaults({
+        initializer.setOracleDefaults({
             outFormat: oracledb.OBJECT
         });
         
-        statement
-            .create('SELECT SYSDATE FROM DUAL')
-            .execute('pool1')
+        let fake = statement.create('SELECT SYSDATE FROM DUAL');
+        
+        fake
+            .execute({
+                poolAlias: 'pool1',
+                user: process.env.ORACLE_USER, 
+                password: process.env.ORACLE_PASSWORD, 
+                connectString: process.env.ORACLE_CONNECTION_STRING 
+            })
             .then((data) => {
                 assert(data.rows[0].SYSDATE);
                 done(null);
             })
+            .finally(function(){
+                fake.done();
+            })
             .catch(function(e){
+                console.log(e)
                 assert(!e)
                 done(e);
             });
     });
 
     it('should use credentials and return result as an array', function(done) {
-        initializer.addConnectionPool({
-            poolAlias: 'pool2',
-            user: process.env.ORACLE_USER, 
-            password: process.env.ORACLE_PASSWORD, 
-            connectString: process.env.ORACLE_CONNECTION_STRING 
-        }).setOracleDefaults({
+        initializer.setOracleDefaults({
             outFormat: oracledb.ARRAY
         });
 
-        statement
-            .create('SELECT SYSDATE FROM DUAL')
-            .execute('pool2')
+        let fake = statement.create('SELECT SYSDATE FROM DUAL');
+        
+        fake
+            .execute('pool1')
             .then((data) => {
                 assert(data.rows[0][0]);
                 done(null);
             })
+            .finally(function(){
+                fake.done();
+            })
             .catch(function(e){
+                console.log(e)
                 assert(!e)
                 done(e);
             });
@@ -60,12 +65,16 @@ describe('initialize database and execute a command', function() {
             outFormat: oracledb.ARRAY
         });
         
-        statement
-            .create('SELECT SYSDATE FROM DUAL')
+        let fake = statement.create('SELECT SYSDATE FROM DUAL');
+
+        fake
             .execute('notdefault')
             .then((data) => {
                 assert(!data);
                 done(null);
+            })
+            .finally(function(){
+                fake.done();
             })
             .catch(function(e){
                 assert(e)
