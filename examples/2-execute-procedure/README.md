@@ -9,8 +9,8 @@ Execute stored procedures is very simple. Let's use the following statement to s
 In jubarte you just need to:
 
 ```
-    jubarte
-        .statement.create('PACKAGE.PROCEDURE')
+    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
+    statement
         .addParameters()
             .name('CURSORPARAMETER').direction(oracle.OUT_BIND)
             .name('PARAMETER').value(10)
@@ -20,8 +20,8 @@ In jubarte you just need to:
 To get cursor results you need to use 'fetchProcedure' method
 
 ```
-    jubarte
-        .statement.create('PACKAGE.PROCEDURE')
+    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
+    statement
         .addParameters()
             .name('CURSORPARAMETER').direction(oracle.OUT_BIND)
             .name('PARAMETER').value(10)
@@ -29,6 +29,9 @@ To get cursor results you need to use 'fetchProcedure' method
         .fetchProcedure()
         .then((data) => {
             res.status(200).send(data[0]);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).send(err.toString());
@@ -76,8 +79,8 @@ Let's do another sample, without cursors.
 Now we will construct our call
 
 ```
-    jubarte
-        .statement.create('PACKAGE.PROCEDURE')
+    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
+    statement
         .addParameters()
             .name('OUTPARAMETER').direction(oracle.OUT_BIND)
             .name('PARAMETER').value('a string value')
@@ -86,14 +89,17 @@ Now we will construct our call
 To execute a procedure that don't return cursors use "executeProcedure"
 
 ```
-    jubarte
-        .statement.create('PACKAGE.PROCEDURE')
+    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
+    statement
         .addParameters()
             .name('OUTPARAMETER').direction(oracle.OUT_BIND)
             .name('PARAMETER').value('a string value')
         .executeProcedure()
         .then((data) => {
             res.status(200).send(data.outBinds.OUTPARAMETER);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).send(err.toString());
@@ -107,14 +113,17 @@ To know how fetch cursors see oracledb docs or ["fetchProcedure"](../../lib/stat
 The "execute" function works equal "executeProcedure" but you need to pass the entire command.
 
 ```
-    jubarte
-        .statement.create('BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;')
+    let statement = jubarte.statement.create('BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;')
+    statement
         .addParameters()
             .name('OUTPARAMETER').direction(oracle.OUT_BIND)
             .name('PARAMETER').value('a string value')
-        .executeProcedure()
+        .execute()
         .then((data) => {
             res.status(200).send(data.outBinds.OUTPARAMETER);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((err) => {
             res.status(500).send(err.toString());
