@@ -18,7 +18,7 @@ app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
         statement.addParameters()
             .name('CURSOR').direction(oracledb.OUT_BIND)
-            .name('NAME').value('a')
+            .name('NAME').value(req.query.name)
         .fetchProcedure()
         .then((data) => {
             res.status(200).send(data[0]);
@@ -38,7 +38,7 @@ app.post('/countries', function (req, res) {
         .sql('COUNTRIES.INSERT')
         .addParameters()
             .name('ID').direction(oracledb.OUT_BIND)
-            .name('NAME').value('Italy')
+            .name('NAME').value(req.body.name)
         .executeProcedure()
         .then((data) => {
             res.status(200).send(data[0]);
