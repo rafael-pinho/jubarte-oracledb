@@ -42,25 +42,19 @@ You need to know some things to use this package.
     * see the features list above to know what is comming
 
 ## Features
-- :small_blue_diamond: Handle connections
-- :small_blue_diamond: Call statements
-- :small_blue_diamond: Automatic CURSOR fetch
-- :small_blue_diamond: Promises instead of callbacks
-- :small_blue_diamond: Multiple databases support
-- :small_blue_diamond: Transactions
-- :small_red_triangle: Bulk inserts
-- :small_red_triangle: Streams
-- :small_red_triangle_down: Event Emitter
-- :small_red_triangle_down: Status Panel
-- :small_red_triangle_down: Simple ORM
 
-| simbol | status |
-|:---:|---|
-| :small_blue_diamond: | done |
-| :small_orange_diamond: | in development |
-| :small_red_triangle: | next release feature |
-| :small_red_triangle_down: | one day feature |
-| :heavy_exclamation_mark: | warning |
+| feature | status |
+|---|:---:|
+| Handle connections | done |
+| Call statements | done |
+| Automatic cursor fetch | done |
+| Promises instead of callbacks | done |
+| Multiple databases support | done |
+| Bulk inserts | next release |
+| Streams | next release |
+| Event Emitter | one day |
+| Status Panel | one day |
+| Simple ORM | one day |
 
 ## Tests
 See [test directory](test/).
