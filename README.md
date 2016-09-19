@@ -1,22 +1,19 @@
 # jubarte-oracledb
 A future npm package to make and execute commands in oracledb.
-Maybe you do not like this package but is impossible do not like whales :)
+
+Before use use jubarte-oracledb, see the section below. To view implementation details go to [examples directory](./examples). 
+
+Maybe you do not like this package but is impossible do not like whales :) 
 Please, help: http://www.greenpeace.org/SOS-Oceans/ 
 
-## How to?
-Before use use jubarte-oracledb, see the section above. To view implementation details go to [examples directory](./examples). 
+## About
 
-### I'm making tests with jubarte in production (2 node api's using it). It's ok by now and works. Follow this repository to get news about it. ###
+### v2.0 Production Ready. ###
 
-### v1.3 have some bugs but I already fix, use the latest version to get this fixes. In v1.4 some implementation details change, please see [examples directory](./examples) (new implementation do not broke old implementation but is needed to release connections to be used) ###
+### This month, the focus is add more samples and refactor tests. ###
 
 ### If you have some issues, please, open an issue or send a pull request. ###
 
-### In next days more samples will be avaliable. I will make more tests and an docker image to make it easier to test. ###
-
-### Between 19/9 and 23/09 jubarte-oracledb will become production ready.###
-
-## Notes
 You need to know some things to use this package.
 
 1. Oracledb
@@ -30,17 +27,18 @@ You need to know some things to use this package.
     * you can configure your connection pool
     * always call statement's 'done' method so jubart will know that is time to close connection
 
-3. Transactions
-    * just give the command: jubarte makes commits, roolbacks and closes connections for you
-    
 3. Fetch Cursors
     * automatic fetchs cursors for you with you want
-     
-4. Promises instead of callbacks
+
+4. Transactions
+    * jubarte supports transactions.
+    * see [this example](./examples/3-execute-many-procedures) to know how it works
+    
+5. Promises instead of callbacks
     * no more callback hell
     * jubarte uses bluebird lib to work with promises
 
-5. Next Releases
+6. Next Releases
     * see the features list above to know what is comming
 
 ## Features
