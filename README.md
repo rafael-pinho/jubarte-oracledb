@@ -1,3 +1,5 @@
+[![bitHound Overall Score](https://www.bithound.io/github/rafael-pinho/jubarte-oracledb/badges/score.svg)](https://www.bithound.io/github/rafael-pinho/jubarte-oracledb)
+
 # jubarte-oracledb
 A future npm package to make and execute commands in oracledb.
 
