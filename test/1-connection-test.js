@@ -1,43 +1,18 @@
 let assert = require('assert'),
-    oracledb = require('oracledb'),
-    poolFactory = require('../lib/connection/poolFactory.js'),
     connectionFactory = require('../lib/connection/connectionFactory.js'),
     Promise = require('bluebird');
 
 
-describe('database connection', function() {
-    it('should return a connection pool', function(done) {
-        oracledb.Promise = Promise;
-
-        poolFactory
-            .get({
-                user: process.env.ORACLE_USER, 
-                password: process.env.ORACLE_PASSWORD, 
-                connectString: process.env.ORACLE_CONNECTION_STRING 
-            })
-            .then(function(pool){
-                assert(pool);
-                assert(pool.getConnection)
-                done();
-            })
-            .catch(function(e){
-                done(e);
-            });
-    });
-
-    it('should return a connection', function(done) {
+describe('connection management', function() {
+    it('should get a connection', function(done) {
         oracledb.Promise = Promise;
         
         poolFactory
             .get({
-                poolAlias: 'default',
+                poolAlias: 'poolTest002',
                 poolMax: 10,
                 poolMin: 4,
                 poolIncrement: 2, 
-                poolTimeout: 60,
-                queueRequests: true,
-                queueTimeout: 5,
-                stmtCacheSize: 30,
                 user: process.env.ORACLE_USER, 
                 password: process.env.ORACLE_PASSWORD, 
                 connectString: process.env.ORACLE_CONNECTION_STRING 
@@ -55,33 +30,45 @@ describe('database connection', function() {
             });
     });
 
-    it('should fail in return a connection', function(done) {
+    it('should get nine more connections', function(done) {
         oracledb.Promise = Promise;
         
         poolFactory
             .get({
-                poolAlias: 'default1',
-                poolMax: 10,
-                poolMin: 4,
-                poolIncrement: 2, 
-                poolTimeout: 60,
-                queueRequests: true,
-                queueTimeout: 5,
-                stmtCacheSize: 30,
-                user: 'havenoname', 
-                password: process.env.ORACLE_PASSWORD, 
+                poolAlias: 'poolTest002',
+            })
+            .then(function(pool){
+                return '123456789'.map(x => connectionFactory.get(pool));
+            })
+            .spread(function(...connections){
+                assert.equal(connections.length, 9);
+                connections.forEach((conn) => {assert(conn.execute)});
+                done();
+            })
+            .catch(function(e){
+                done(e);
+            });
+    });
+
+    it('should fail in try to get a connection', function(done) {
+        oracledb.Promise = Promise;
+        
+        poolFactory
+            .get({
+                poolAlias: 'poolTest003',
+                user: 'Gandalf', 
+                password: 'YouShallNotPass', 
                 connectString: process.env.ORACLE_CONNECTION_STRING 
             })
             .then(function(pool){
                 return connectionFactory.get(pool);
             })
             .then(function(connection){
-                assert(!connection);
-                done(connection);
+                throw "You are not welcome here: " + connection;
             })
             .catch(function(e){
                 assert(e);
-                done(null);
+                done();
             });
     });
 });
