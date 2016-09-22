@@ -1,0 +1,6 @@
+"ignore": [
+  ./examples
+],
+"critics": {
+  "lint": { "engine": "eslint" }
+}
