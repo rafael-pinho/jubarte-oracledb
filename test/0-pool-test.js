@@ -1,9 +1,10 @@
-let assert = require('assert'),
-    poolFactory = require('../lib/connection/poolFactory.js');
+let poolFactory = require('../lib/connection/poolFactory.js'),
+    assert = require('assert'),
+    bluebird = require('bluebird');
 
 describe('pool management', function() {
     it('should create a connection pool', function(done) {
-        oracledb.Promise = Promise;
+        oracledb.Promise = bluebird;
 
         poolFactory
             .create({
@@ -14,7 +15,7 @@ describe('pool management', function() {
             })
             .then(function(pool){
                 assert(pool);
-                assert(pool.getConnection)
+                assert(pool.getConnection);
                 done();
             })
             .catch(function(e){
@@ -23,7 +24,7 @@ describe('pool management', function() {
     });
 
     it('should return the created pool "testPool001"', function(done) {
-        oracledb.Promise = Promise;
+        oracledb.Promise = bluebird;
 
         poolFactory
             .get({
@@ -31,7 +32,7 @@ describe('pool management', function() {
             })
             .then(function(pool){
                 assert(pool);
-                assert(pool.getConnection)
+                assert(pool.getConnection);
                 done();
             })
             .catch(function(e){

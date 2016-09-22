@@ -1,11 +1,11 @@
-let assert = require('assert'),
-    connectionFactory = require('../lib/connection/connectionFactory.js'),
-    Promise = require('bluebird');
+let connectionFactory = require('../lib/connection/connectionFactory.js'),
+    assert = require('assert'),
+    bluebird = require('bluebird');
 
 
 describe('connection management', function() {
     it('should get a connection', function(done) {
-        oracledb.Promise = Promise;
+        oracledb.Promise = bluebird;
         
         poolFactory
             .get({
@@ -22,7 +22,7 @@ describe('connection management', function() {
             })
             .then(function(connection){
                 assert(connection);
-                assert(connection.execute)
+                assert(connection.execute);
                 done();
             })
             .catch(function(e){
@@ -31,7 +31,7 @@ describe('connection management', function() {
     });
 
     it('should get nine more connections', function(done) {
-        oracledb.Promise = Promise;
+        oracledb.Promise = bluebird;
         
         poolFactory
             .get({
@@ -42,7 +42,7 @@ describe('connection management', function() {
             })
             .spread(function(...connections){
                 assert.equal(connections.length, 9);
-                connections.forEach((conn) => {assert(conn.execute)});
+                connections.forEach((conn) => {assert(conn.execute);});
                 done();
             })
             .catch(function(e){
@@ -51,7 +51,7 @@ describe('connection management', function() {
     });
 
     it('should fail in try to get a connection', function(done) {
-        oracledb.Promise = Promise;
+        oracledb.Promise = bluebird;
         
         poolFactory
             .get({
