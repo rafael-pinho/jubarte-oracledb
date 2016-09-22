@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "name": "execute-procedure",
+  "description": "teach how to execute a procedure",
+  "main": "app.js",
+  "author": "Rafael Pinho",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "oracledb": "^1.11.0"
+  }
+}

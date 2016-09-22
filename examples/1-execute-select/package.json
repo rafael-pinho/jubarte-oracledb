@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "name": "execute-select",
+  "description": "teach how to execute a select statement",
+  "main": "app.js",
+  "author": "Rafael Pinho",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

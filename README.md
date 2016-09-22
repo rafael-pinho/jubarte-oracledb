@@ -1,14 +1,21 @@
+[![bitHound Overall Score](https://www.bithound.io/github/rafael-pinho/jubarte-oracledb/badges/score.svg)](https://www.bithound.io/github/rafael-pinho/jubarte-oracledb)
+
 # jubarte-oracledb
 A future npm package to make and execute commands in oracledb.
 
-## How to?
-Before use use jubarte-oracledb, see the section above
+Before use use jubarte-oracledb, see the section below. To view implementation details go to [examples directory](./examples). 
 
-One day, (this week), [examples directory](examples) will have some samples. 
+Maybe you do not like this package but is impossible do not like whales :) 
+Please, help: http://www.greenpeace.org/SOS-Oceans/ 
 
-### In the current version there is no suport for multiple databases. After configuration is done all requests will execute in the same database. I will implement this feature in v0.2 ###
+## About
 
-## Notes
+### v2.0 Production Ready. ###
+
+### This month, the focus is add more samples and refactor tests. ###
+
+### If you have some issues, please, open an issue or send a pull request. ###
+
 You need to know some things to use this package.
 
 1. Oracledb
@@ -22,33 +29,37 @@ You need to know some things to use this package.
     * you can configure your connection pool
     * always call statement's 'done' method so jubart will know that is time to close connection
 
-3. Transactions
-    * not implemented
-    * will be avaliable in v0.2
+3. Fetch Cursors
+    * automatic fetchs cursors for you with you want
 
-3. Next Releases
+4. Transactions
+    * jubarte supports transactions.
+    * see [this example](./examples/3-execute-many-procedures) to know how it works
+    
+5. Promises instead of callbacks
+    * no more callback hell
+    * jubarte uses bluebird lib to work with promises
+
+6. Next Releases
     * see the features list above to know what is comming
-
-## Tests
-See [test directory](test/).
 
 ## Features
 
-- :small_blue_diamond: Handle connections
-- :small_blue_diamond: Call statements
-- :small_red_triangle: Multiple databases support
-- :small_red_triangle: Transactions
-- :small_red_triangle_down: Event Emitter
-- :small_red_triangle_down: Status Panel
-- :small_red_triangle_down: Simple ORM
+| feature | status |
+|---|:---:|
+| Handle connections | done |
+| Call statements | done |
+| Automatic cursor fetch | done |
+| Promises instead of callbacks | done |
+| Multiple databases support | done |
+| Bulk inserts | next release |
+| Streams | next release |
+| Event Emitter | one day |
+| Status Panel | one day |
+| Simple ORM | one day |
 
-| simbol | status |
-|:---:|---|
-| :small_blue_diamond: | done |
-| :small_orange_diamond: | in development |
-| :small_red_triangle: | next release feature |
-| :small_red_triangle_down: | one day feature |
-| :heavy_exclamation_mark: | warning |
+## Tests
+See [test directory](test/).
 
 ## Contributing
 Open issues, pull requests, add tests, new ideas or whatever...contributors are welcome.

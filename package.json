@@ -1,6 +1,6 @@
 {
   "name": "jubarte-oracledb",
-  "version": "0.2.1",
+  "version": "2.0.0",
   "description": "a package to make and call commands in oracledb",
   "main": "./lib/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "mocha": "^3.0.2"
   },
   "dependencies": {
+    "bluebird": "^3.4.5",
     "oracledb": "^1.11.0"
   }
 }
