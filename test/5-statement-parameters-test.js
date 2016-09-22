@@ -8,7 +8,7 @@ describe('statement parameters', function() {
         oracledb.outFormat = oracledb.ARRAY;
 
         let p1 = 'Noe',
-            p2 = 45
+            p2 = 45,
             command = 'SELECT :name, :age FROM DUAL',
             fake = statement.create(command);
 
@@ -29,7 +29,7 @@ describe('statement parameters', function() {
                     fake.done();
                 })
                 .catch(function(e){
-                    assert(!e)
+                    assert(!e);
                     done(e);
                 });
     });
@@ -38,7 +38,7 @@ describe('statement parameters', function() {
         oracledb.outFormat = oracledb.ARRAY;
         
         let p1 = 'Johan',
-            p2 = 45
+            p2 = 45,
             command = 'SELECT :name, :age FROM DUAL',
             fake = statement.create(command);
             
@@ -61,7 +61,7 @@ describe('statement parameters', function() {
                     fake.done();
                 })
                 .catch(function(e){
-                    assert(!e)
+                    assert(!e);
                     done(e);
                 });
     });
