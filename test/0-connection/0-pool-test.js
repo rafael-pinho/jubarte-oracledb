@@ -1,8 +1,10 @@
-let poolFactory = require('../lib/connection/poolFactory.js'),
-    assert = require('assert'),
-    bluebird = require('bluebird');
+let assert = require('assert'),
+    oracledb = require('oracledb'),
+    bluebird = require('bluebird'),
+    poolFactory = require('../../lib/connection/poolFactory.js');
 
 describe('pool management', function() {
+    
     it('should create a connection pool', function(done) {
         oracledb.Promise = bluebird;
 

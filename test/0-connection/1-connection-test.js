@@ -1,9 +1,11 @@
-let connectionFactory = require('../lib/connection/connectionFactory.js'),
-    assert = require('assert'),
-    bluebird = require('bluebird');
-
+let assert = require('assert'),
+    bluebird = require('bluebird'),
+    oracledb = require('oracledb'),
+    connectionFactory = require('../../lib/connection/connectionFactory.js'),
+    poolFactory = require('../../lib/connection/poolFactory.js');
 
 describe('connection management', function() {
+    
     it('should get a connection', function(done) {
         oracledb.Promise = bluebird;
         
@@ -38,7 +40,7 @@ describe('connection management', function() {
                 poolAlias: 'poolTest002',
             })
             .then(function(pool){
-                return '123456789'.map(x => connectionFactory.get(pool));
+                return [0, 1, 2, 3, 4, 5, 6, 7, 8].map(() => connectionFactory.get(pool));
             })
             .spread(function(...connections){
                 assert.equal(connections.length, 9);
