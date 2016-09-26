@@ -20,7 +20,7 @@ describe('statement buider', function() {
             assert(fake.roolback);
             assert.deepEqual(fake.parameters, []);
             assert.equal(fake.command, command);
-            done(null);
+            done();
         }
         catch(e){
             done(e);
@@ -32,11 +32,65 @@ describe('statement buider', function() {
             let command = 'SELECT SYSDATE FROM DUAL',
                 fake = statement.create(command);
             assert.equal(fake.command, command);
-            done(null);
+            done();
         }
         catch(e){
             done(e);
         }
     });
 
+    it('should execute a sql command', function(done) {
+        try{
+            let command = 'SELECT SYSDATE FROM DUAL',
+                fake = statement.create(command);
+            
+            fake.execute({
+                    user: process.env.ORACLE_USER, 
+                    password: process.env.ORACLE_PASSWORD, 
+                    connectString: process.env.ORACLE_CONNECTION_STRING
+                })
+                .then((result) => {
+                    assert(result.rows[0]);
+                    assert(typeof(result.rows[0]) == 'object');
+                    done();
+                })
+                .finally(() => {
+                    fake.done();
+                })
+                .catch((e) => {
+                    done(e);
+                })
+        }
+        catch(e){
+            done(e);
+        }
+    });
+
+    it('should execute a sql command and return parameter value', function(done) {
+        try{
+            let command = 'SELECT :MYNUMBER FROM DUAL',
+                fake = statement.create(command);
+            
+            fake.addParameters(1)
+                .execute({
+                    user: process.env.ORACLE_USER, 
+                    password: process.env.ORACLE_PASSWORD, 
+                    connectString: process.env.ORACLE_CONNECTION_STRING
+                })
+                .then((result) => {
+                    assert(result.rows[0]);
+                    assert.equal(result.rows[0], 1);
+                    done();
+                })
+                .finally(() => {
+                    fake.done();
+                })
+                .catch((e) => {
+                    done(e);
+                })
+        }
+        catch(e){
+            done(e);
+        }
+    });
 });

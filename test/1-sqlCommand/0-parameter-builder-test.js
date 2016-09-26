@@ -7,9 +7,9 @@ describe('parameter buider', function() {
     it('should have an array of values', function(done) {
         function buildParams(...values){
             let fake = {
-                parameters: parameterBuilder
+                addParameters: parameterBuilder
             };
-            fake.parameters(...values);
+            fake.addParameters(...values);
             assert(fake.parameters);
             assert.equal(fake.parameters.length, values.length);
             assert.deepStrictEqual(fake.parameters, values)
@@ -30,10 +30,10 @@ describe('parameter buider', function() {
     it('should have an empty object', function(done) {
         try{
             let fake = {
-                parameters: parameterBuilder
+                addParameters: parameterBuilder
             };
 
-            fake.parameters();
+            fake.addParameters();
             
             assert(fake.parameters);
             assert.deepStrictEqual(fake.parameters, {});
@@ -47,9 +47,9 @@ describe('parameter buider', function() {
     it('should have an object with parameters', function(done) {        
         try{
             let fake = {
-            parameters: parameterBuilder
+                addParameters: parameterBuilder
             };
-            fake.parameters()
+            fake.addParameters()
                     .name('p1').value(1)
                     .name('p2').value(1).type('number')
                     .name('p3').value(1).direction('IN')

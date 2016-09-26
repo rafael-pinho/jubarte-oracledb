@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+
+  jubarte:
+    image: rafaelpinho/node:ora-6.2.2
+    environment:
+      - ORACLE_USER=system
+      - ORACLE_PASSWORD=oracle
+      - ORACLE_CONNECTION_STRING=oracle:1521/xe
+    volumes:
+      - ../:/code
+    working_dir: /code
+    command: bash -c "npm install && npm test"
+    links:
+      - oracle
+    
+  oracle:
+    image: wnameless/oracle-xe-11g
+    expose:
+      - 1521

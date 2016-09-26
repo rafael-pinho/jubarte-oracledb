@@ -10,7 +10,6 @@ describe('connection command', function() {
             }
             fake.commit = connectionCommand.commit;
             fake.commit();
-            done();
         }
         catch(e){
             done(e);
@@ -24,7 +23,6 @@ describe('connection command', function() {
             }
             fake.roolback = connectionCommand.roolback;
             fake.roolback();
-            done();
         }
         catch(e){
             done(e);
@@ -33,12 +31,11 @@ describe('connection command', function() {
 
     it('should call done', function(done) {
         try{
-            fake.connection.done = () => {
+            fake.connection.close = () => {
                 done();
             }
             fake.done = connectionCommand.done;
             fake.done();
-            done();
         }
         catch(e){
             done(e);
