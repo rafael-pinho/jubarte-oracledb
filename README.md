@@ -5,9 +5,6 @@ A future npm package to make and execute commands in oracledb.
 
 Before use use jubarte-oracledb, see the section below. To view implementation details go to [examples directory](./examples). 
 
-Maybe you do not like this package but is impossible do not like whales :) 
-Please, help: http://www.greenpeace.org/SOS-Oceans/ 
-
 ## About
 
 ### v2.0 Production Ready. ###
