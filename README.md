@@ -8,8 +8,8 @@ Before use use jubarte-oracledb, see the section below. To view implementation d
 ## About
 
 ### v2.0 Production Ready. ###
-### v3.0 will have some incompatibilities. See [next release notes](./releases/3.0-beta.md) ###
-### Now I focus in solve two bugs. See [next release notes](./releases/3.0-beta.md) ###
+### v3.0 will have some incompatibilities. See [next release notes](./docs/next-release.md) ###
+### Now I focus in solve two bugs. See [next release notes](./docs/next-release.md) ###
 
 ### If you have some issues, please, open an issue or send a pull request. ###
 
