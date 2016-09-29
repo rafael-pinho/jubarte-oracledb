@@ -1,4 +1,4 @@
-## Introduction
+## 3.0-beta
 
 This release was created because of two problems in release 2.0 and new features will not be added.
 
