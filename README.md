@@ -42,12 +42,13 @@ You need to know some things to use this package.
 
 ## Features
 
-| feature | status |
+| Feature | Status |
 |---|:---:|
 | Handle connections | done |
 | Call statements | done |
 | Automatic cursor fetch | done |
 | Promises instead of callbacks | done |
+| Transactions | done |
 | Multiple databases support | done |
 | Bulk inserts | next release |
 | Streams | next release |
