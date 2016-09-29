@@ -1,12 +1,12 @@
 const assert = require('assert'),
       oracledb = require('oracledb'),
-      databaseConfiguration = require('../../lib/database/databaseConfiguration.js');
+      oracleConfiguration = require('../lib/configuration/oracledb.js');
 
-describe('setting database configuration', function() {
+describe('oracledb configuration', function() {
 
     it('should set oracledb defaults', function(done) {
         try{
-            databaseConfiguration.set({
+            oracleConfiguration.set({
                 autoCommit: true, 
                 maxRows: 10
             });

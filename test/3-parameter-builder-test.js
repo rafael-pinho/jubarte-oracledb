@@ -1,5 +1,5 @@
 let assert = require('assert'),
-    parameterBuilder = require('../../lib/statement/parameterBuilder.js');
+    parameterBuilder = require('../lib/statement/parameterBuilder.js');
 
 
 describe('parameter buider', function() {

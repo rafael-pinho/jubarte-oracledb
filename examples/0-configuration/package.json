@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "name": "execute-select",
-  "description": "teach how to execute a select statement",
+  "name": "configure-jubarte",
+  "description": "teach how to configure jubarte",
   "main": "app.js",
   "author": "Rafael Pinho",
   "license": "ISC",

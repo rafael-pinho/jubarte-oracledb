@@ -1,22 +1,10 @@
-const jubarte = require('../../lib/index.js'),
-      oracledb = require('oracledb');
-
-jubarte.initialize
-    .setOracleDefaults({
-        outBinds: oracledb.OBJECT
-    })
-    .addConnectionPool({
-        user: process.env.ORACLE_USER, 
-        password: process.env.ORACLE_PASSWORD, 
-        connectString: process.env.ORACLE_CONNECTION_STRING 
-    });
-
 const express = require('express'),
-    app = express();
+      app = express(),
+      databaseConfiguration = require('./configuration.js'),
+      jubarte = require('jubarte-oracledb');
 
 app.get('/', function (req, res) {
-    let statement = jubarte
-        .statement.create('SELECT SYSDATE FROM DUAL');
+    let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
     
     statement
         .execute()
@@ -35,8 +23,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/format', function (req, res) {
-    let statement = jubarte
-        .statement.create('SELECT SYSDATE FROM DUAL');
+    let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
     
     statement
         .execute()
@@ -57,10 +44,10 @@ app.get('/format', function (req, res) {
 });
 
 app.get('/:level', function (req, res) {
-    let statement = jubarte
-        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL');
+    let statement = jubarte.statement.create();
     
     statement
+        .sql('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL')
         .addParameters()
             .name('MAX_LEVEL').value(req.params.level)
         .execute()
@@ -75,14 +62,14 @@ app.get('/:level', function (req, res) {
                 code: 500,
                 message: err.toString()
             });
-        })
+        });
 });
 
 app.get('/:level/format', function (req, res) {
-    let statement = jubarte
-        .statement.create('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL');
+    let statement = jubarte.statement.create();
     
     statement
+        .sql('SELECT LEVEL, SYSDATE FROM DUAL CONNECT BY LEVEL <= :MAX_LEVEL')
         .addParameters()
             .name('MAX_LEVEL').value(req.params.level)
         .execute()
@@ -92,7 +79,7 @@ app.get('/:level/format', function (req, res) {
                     date: row.SYSDATE,
                     level: row.LEVEL
                 }
-            }))
+            }));
         })
         .finally(() => {
             statement.done();
@@ -102,9 +89,15 @@ app.get('/:level/format', function (req, res) {
                 code: 500,
                 message: err.toString()
             });
-        })
+        });
 });
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+databaseConfiguration((err) => {
+    if(!err){
+        app.listen(3000, function () {
+            console.log('Example app listening on port 3000!');
+        });
+    }
+    else
+        throw err;
 });

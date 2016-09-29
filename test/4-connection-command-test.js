@@ -1,4 +1,4 @@
-let connectionCommand = require('../../lib/statement/connectionCommand.js'),
+let connectionCommand = require('../lib/statement/connectionCommand.js'),
     fake = {connection: {}};
 
 describe('connection command', function() {

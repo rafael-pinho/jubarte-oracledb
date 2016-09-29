@@ -1,18 +1,7 @@
-const jubarte = require('../../lib/index.js'),
-      oracledb = require('oracledb');
-
-jubarte.initialize
-    .setOracleDefaults({
-        outBinds: oracledb.OBJECT
-    })
-    .addConnectionPool({
-        user: process.env.ORACLE_USER, 
-        password: process.env.ORACLE_PASSWORD, 
-        connectString: process.env.ORACLE_CONNECTION_STRING 
-    });
-
 const express = require('express'),
-    app = express();
+      app = express(),
+      databaseConfiguration = require('./configuration.js'),
+      jubarte = require('jubarte-oracledb');
 
 app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
@@ -78,6 +67,12 @@ function addCity(cityName, statement){
                 .executeProcedure();
 }
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+databaseConfiguration((err) => {
+    if(!err){
+        app.listen(3000, function () {
+            console.log('Example app listening on port 3000!');
+        });
+    }
+    else
+        throw err;
 });
