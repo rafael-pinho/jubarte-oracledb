@@ -22,7 +22,7 @@ This release was created because of two problems in release 2.0 and new features
 
 ## Changes
 
-1. Will not be possible to create a pool passing option to "execute" methods like the sample below:
+1. Will not be possible to create a pool passing options to "execute" methods like the sample below:
 ```
     let jubarte = require('jubarte-oracledb')
         statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
