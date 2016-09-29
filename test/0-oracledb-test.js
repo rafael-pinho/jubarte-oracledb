@@ -6,7 +6,7 @@ describe('oracledb configuration', function() {
 
     it('should set oracledb defaults', function(done) {
         try{
-            oracleConfiguration.set({
+            oracleConfiguration.setOracledbConfiguration({
                 autoCommit: true, 
                 maxRows: 10
             });

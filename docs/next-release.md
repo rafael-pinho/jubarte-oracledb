@@ -22,8 +22,7 @@ This release was created because of two problems in release 2.0 and new features
 
 ## Changes
 
-1. "jubarte.initialize" change to "jubarte.configuration". See [this example](../examples/0-configuration) to view how it works.
-2. Will not be possible to create a pool passing option to "execute" methods like the sample below:
+1. Will not be possible to create a pool passing option to "execute" methods like the sample below:
 ```
     let jubarte = require('jubarte-oracledb')
         statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
@@ -44,7 +43,3 @@ You can still pass a pool name but the pool need to be previous created. To unde
     let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');    
     statement.execute('mypool');
 ```
-
-## Stability 
-
-The methods signatures are stable now and will not have changes anymore.

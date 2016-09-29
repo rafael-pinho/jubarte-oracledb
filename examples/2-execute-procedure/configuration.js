@@ -2,11 +2,10 @@ const jubarte = require('../../lib/index.js'),
       oracledb = require('oracledb');
 
 module.exports = (callback) => {
-    jubarte.configuration.oracledb.set({
+    jubarte.initialize.setOracleDefaults({
         outBinds: oracledb.OBJECT
-    });
-
-    jubarte.configuration.pool.add({
+    })
+    .addConnectionPool({
         user: process.env.ORACLE_USER, 
         password: process.env.ORACLE_PASSWORD, 
         connectString: process.env.ORACLE_CONNECTION_STRING 
