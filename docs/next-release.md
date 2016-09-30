@@ -43,30 +43,3 @@ You can still pass a pool name but the pool need to be previous created. To unde
     let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');    
     statement.execute('mypool');
 ```
-
-2. Fetch procedures no more return a array with cursors. This change was made to give more flexibility to development.
-They return all separated. To use that method you will need to:
-```       
-    statement
-        .addParameters()
-            .name('P_FIRST_CURSOR').direction(oracleDB.BIND_OUT).type(oracleDB.CURSOR)
-            .name('P_SECOND_CURSOR').direction(oracleDB.BIND_OUT).type(oracleDB.CURSOR)
-        .fetchProcedure()
-        .then((first, second) => {
-            //firstCursor = P_FIRST_CURSOR results
-            //secondCursor = P_SECOND_CURSOR results
-        });
-```
-
-or use spread operator
-```       
-    statement
-        .addParameters()
-            .name('P_FIRST_CURSOR').direction(oracleDB.BIND_OUT).type(oracleDB.CURSOR)
-            .name('P_SECOND_CURSOR').direction(oracleDB.BIND_OUT).type(oracleDB.CURSOR)
-        .fetchProcedure()
-        .then((...cursors) => {
-            //cursors[0] = P_FIRST_CURSOR results
-            //cursors[1] = P_SECOND_CURSOR results
-        });
-```
