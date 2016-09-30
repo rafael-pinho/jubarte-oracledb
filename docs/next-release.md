@@ -23,23 +23,47 @@ This release was created because of two problems in release 2.0 and new features
 ## Changes
 
 1. Will not be possible to create a pool passing options to "execute" methods like the sample below:
+
 ```
     let jubarte = require('jubarte-oracledb')
         statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
         
     statement.execute({
-        user: 'myuser', password: 'mypassword', connectString: 'localhost:1521/xe'
+        user: 'myuser', 
+        password: 'mypassword', 
+        connectString: 'localhost:1521/xe'
     });
 ```
 
 You can still pass a pool name but the pool need to be previous created. To understand see the sample below:
+
 ```
     let jubarte = require('jubarte-oracledb');
     
     jubarte.configuration.pool.add({
-         user: 'myuser', password: 'mypassword', connectString: 'localhost:1521/xe', poolAlias: 'mypool'
+         user: 'myuser', 
+         password: 'mypassword', 
+         connectString: 'localhost:1521/xe', 
+         poolAlias: 'mypool'
     })
     
     let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');    
     statement.execute('mypool');
 ```
+
+or
+
+```
+    let jubarte = require('jubarte-oracledb');
+    
+    jubarte.configuration.pool.add({
+         user: 'myuser', 
+         password: 'mypassword', 
+         connectString: 'localhost:1521/xe'
+    })
+    
+    let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');    
+    statement.execute();
+```
+
+
