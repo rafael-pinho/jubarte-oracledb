@@ -21,7 +21,8 @@ app.get('/countries', function (req, res) {
 });
 
 app.post('/countries', function (req, res) {
-    let statement = jubarte.statement.create();
+    let statement = jubarte.statement.create(),
+        country = req.body; 
 
     statement
         .sql('COUNTRIES.INSERT')
@@ -30,7 +31,8 @@ app.post('/countries', function (req, res) {
             .name('NAME').value(req.body.name)
         .executeProcedure()
         .then((data) => {
-            res.status(200).send(data[0]);
+            country.id = data.outBinds.ID;
+            res.status(200).send(country);
         })
         .finally(() => {
             statement.done();
