@@ -47,10 +47,10 @@ describe('connection management', function() {
                 connectString: process.env.ORACLE_CONNECTION_STRING,
                 poolAlias: 'poolTest2.1'
             })
-            .then(function(pool){
+            .then(function(){
                 let promises = [];
 
-                for(let i =0; i < 3; i ++)
+                for(let i = 0; i < 3; i++)
                     promises.push(connectionFactory.get('poolTest2.1'));
                 
                 return promises;
@@ -59,7 +59,7 @@ describe('connection management', function() {
                 assert(connections);
                 assert(connections.length == 3);
 
-                for(let i = 0; i < connections.length; i ++)
+                for(let i = 0; i < connections.length; i++)
                     assert(connections[i].execute);
 
                 done();
