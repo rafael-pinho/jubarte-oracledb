@@ -6,7 +6,7 @@ const express = require('express'),
 app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
         statement.addParameters()
-            .name('CURSOR').direction(oracledb.OUT_BIND)
+            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND)
             .name('NAME').value(req.query.name)
         .fetchProcedure()
         .then((data) => {
@@ -53,7 +53,7 @@ function addCountry(countryName, statement){
     return statement
                 .sql('COUNTRIES.INSERT')
                 .addParameters()
-                    .name('ID').direction(oracledb.OUT_BIND)
+                    .name('ID').direction(jubarte.oracledb.OUT_BIND)
                     .name('NAME').value(countryName)
                 .executeProcedure();
 }
@@ -62,7 +62,7 @@ function addCity(cityName, statement){
     return statement
                 .sql('CITIES.INSERT')
                 .addParameters()
-                    .name('ID').direction(oracledb.OUT_BIND)
+                    .name('ID').direction(jubarte.oracledb.OUT_BIND)
                     .name('NAME').value(cityName)
                 .executeProcedure();
 }

@@ -41,7 +41,6 @@ Now, if you have parameters you can:
 
 or:
 
-
 ```
     let statement = jubarte.statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL');
     statement

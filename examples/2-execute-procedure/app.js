@@ -6,9 +6,9 @@ const express = require('express'),
 app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
         statement.addParameters()
-            .name('CURSOR').direction(oracledb.OUT_BIND)
+            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND)
             .name('NAME').value(req.query.name)
-        .fetchProcedure()
+        .execute()
         .then((data) => {
             res.status(200).send(data[0]);
         })
@@ -17,7 +17,7 @@ app.get('/countries', function (req, res) {
         })
         .catch((err) => {
             res.status(500).send(err.toString());
-        })
+        });
 });
 
 app.post('/countries', function (req, res) {
@@ -27,7 +27,7 @@ app.post('/countries', function (req, res) {
     statement
         .sql('COUNTRIES.INSERT')
         .addParameters()
-            .name('ID').direction(oracledb.OUT_BIND)
+            .name('ID').direction(jubarte.oracledb.OUT_BIND)
             .name('NAME').value(req.body.name)
         .executeProcedure()
         .then((data) => {
@@ -39,7 +39,7 @@ app.post('/countries', function (req, res) {
         })
         .catch((err) => {
             res.status(500).send(err.toString());
-        })
+        });
 });
 
 databaseConfiguration((err) => {
