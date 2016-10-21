@@ -8,14 +8,14 @@ Execute commands are easy. Let's use the following command as sample:
 
 In jubarte you just need to:
 
-```
+``` javascript
     let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
     statement.execute()
 ```
 
 After execute, the result will be in data.rows
 
-```
+``` javascript
     let statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
     statement
         .execute()
@@ -32,7 +32,7 @@ After execute, the result will be in data.rows
 
 Now, if you have parameters you can:
 
-```
+``` javascript
     let statement = jubarte.statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL');
     statement
         .addParameters(10)
@@ -41,7 +41,7 @@ Now, if you have parameters you can:
 
 or:
 
-```
+``` javascript
     let statement = jubarte.statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL');
     statement
         .addParameters()
@@ -51,7 +51,7 @@ or:
 
 After execute, the result will be in data.rows too
 
-```
+``` javascript
     let statement = jubarte.statement.create('SELECT :PARAMETER AS VAL, SYSDATE FROM DUAL');
     statement
         .addParameters()
