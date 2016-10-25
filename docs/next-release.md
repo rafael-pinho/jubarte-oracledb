@@ -1,4 +1,4 @@
-## 3.0-beta
+## 3.0
 
 This release was created because of two problems in release 2.0 and new features will not be added.
 
@@ -18,7 +18,7 @@ This release was created because of two problems in release 2.0 and new features
 1. In 2.0 has no possibility to wait pool creation end to start your app
     - fix
 2. In 2.0 has a deadlock occour when you try to execute many inserts in one table without a previous connection created
-    - working
+    - fix
 
 ## Changes
 

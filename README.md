@@ -7,9 +7,10 @@ Before use use jubarte-oracledb, see the section below. To view implementation d
 
 ## About
 
-### v2.0 Production Ready. ###
-### v3.0 will have some incompatibilities. See [next release notes](./docs/next-release.md) ###
-### Now I focus in solve two bugs. See [next release notes](./docs/next-release.md) ###
+### v3.0 Production Ready. ###
+### v3.0 has some incompatibilities. See [next release notes](./docs/next-release.md) ###
+### v3.0 has two bugs fixed. See [next release notes](./docs/next-release.md) ###
+### now the focus is make better samples and docs ###
 ### If you have some issues, please, open an issue or send a pull request. ###
 
 1. Oracledb
