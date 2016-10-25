@@ -8,7 +8,7 @@ Execute stored procedures is very simple. Let's use the following statement to s
 
 In jubarte you just need to:
 
-```
+``` javascript
     let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
     statement
         .addParameters()
@@ -19,7 +19,7 @@ In jubarte you just need to:
 
 To get cursor results you need to use 'fetchProcedure' method
 
-```
+``` javascript
     let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
     statement
         .addParameters()
@@ -41,7 +41,7 @@ To get cursor results you need to use 'fetchProcedure' method
 The "data" is an array with all cursors data.So if you have:
 
 * A single cursor:
-```
+``` javascript
     [
         [ // my cursor data
             {id: 1, name: 'Brazil'},
@@ -52,7 +52,7 @@ The "data" is an array with all cursors data.So if you have:
 ```
 
 * Two or more:
-```
+``` javascript
     [
         [ // my first cursor data
             {id: 1, name: 'Brazil'},
@@ -78,7 +78,7 @@ Let's do another sample, without cursors.
 
 Now we will construct our call
 
-```
+``` javascript
     let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
     statement
         .addParameters()
@@ -88,7 +88,7 @@ Now we will construct our call
 
 To execute a procedure that don't return cursors use "executeProcedure"
 
-```
+``` javascript
     let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
     statement
         .addParameters()
@@ -112,7 +112,7 @@ To know how fetch cursors see oracledb docs or ["fetchProcedure"](../../lib/stat
 
 The "execute" function works equal "executeProcedure" but you need to pass the entire command.
 
-```
+``` javascript
     let statement = jubarte.statement.create('BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;')
     statement
         .addParameters()

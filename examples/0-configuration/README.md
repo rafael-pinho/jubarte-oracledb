@@ -9,7 +9,7 @@ Is easy. We have two types of configuration:
 
 To configure oracledb, just call jubarte and pass an object with options, (defaults in sample):
 
-```
+``` javascript
 const jubarte = require('jubarte-oracledb'),
       oracledb = require('oracledb');
 
@@ -20,7 +20,7 @@ jubarte.initialize.setOracleDefaults({
 
 Now, to create pools
 
-```
+``` javascript
 const jubarte = require('jubarte-oracledb'),
       oracledb = require('oracledb');
 

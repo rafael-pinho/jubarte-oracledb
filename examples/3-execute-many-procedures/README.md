@@ -6,7 +6,7 @@ In this sample we have two procedures: the first one insert a country; the secon
 
 This is the received object 
 
-```
+``` javascript
     {
         name: 'Spanish',
         cities: [{name: 'Madrid'}, {name: 'Barcelona'}, {name: 'Sevilla'}]
@@ -16,7 +16,7 @@ This is the received object
 First create the two functions to call the procedures: "addCountry" and "addCity".
 The two need the name of country or city and the "statement", an object created with jubarte.
 
-```
+``` javascript
 function addCountry(countryName, statement){
     return statement
                 .sql('COUNTRIES.INSERT')
@@ -38,7 +38,7 @@ function addCity(cityName, statement){
 
 Now let's call the procs. First, create a statement.
 
-```
+``` javascript
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();
@@ -46,7 +46,8 @@ app.post('/countries', function (req, res) {
 ```
 
 Now call "addCountry".
-```
+
+``` javascript
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();
@@ -61,7 +62,7 @@ app.post('/countries', function (req, res) {
 The functions return "executeProcedure" so they return a promisse; The "result" in "then" is the procedure execution result, so they have "outBinds";
 Let's get the country id returned by procedure and insert all cities.
 
-```
+``` javascript
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();
@@ -79,7 +80,7 @@ app.post('/countries', function (req, res) {
 Now we return a array of promisses. To deal with him use spread. Spread receive all returns from all promises. 
 The returns is the same of addCountry: the results of statement call. Let's get the returned ids and put in cities objects in cities array;
 
-```
+``` javascript
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();
@@ -104,7 +105,7 @@ app.post('/countries', function (req, res) {
 
 Commit the operation, add a "catch" and finish your job. The final code is below.
 
-```
+``` javascript
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();

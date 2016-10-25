@@ -24,7 +24,7 @@ This release was created because of two problems in release 2.0 and new features
 
 1. Will not be possible to create a pool passing options to "execute" methods like the sample below:
 
-```
+``` javascript
     let jubarte = require('jubarte-oracledb')
         statement = jubarte.statement.create('SELECT SYSDATE FROM DUAL');
         
@@ -37,7 +37,7 @@ This release was created because of two problems in release 2.0 and new features
 
 You can still pass a pool name but the pool need to be previous created. To understand see the sample below:
 
-```
+``` javascript
     let jubarte = require('jubarte-oracledb');
     
     jubarte.configuration.pool.add({
@@ -53,7 +53,7 @@ You can still pass a pool name but the pool need to be previous created. To unde
 
 or
 
-```
+``` javascript
     let jubarte = require('jubarte-oracledb');
     
     jubarte.configuration.pool.add({
