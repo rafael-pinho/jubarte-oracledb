@@ -1,133 +1,104 @@
-## EXECUTE PROCEDURES
+## Execute procedures
 
-Execute stored procedures is very simple. Let's use the following statement to show how jubarte call procedures:
+Execute stored procedures is very simple and is like execute simple queries.
+We have two functions: to execute procedures that has no cursors and to execute procedures with cursors.
+
+### Execute procedures without cursors
+
+Let's use the following statement to show how jubarte call procedures:
 
 ```
-    BEGIN PACKAGE.PROCEDURE :CURSORPARAMETER, :PARAMETER, :OTHERPARAMETER; END;
+    BEGIN MYPACKAGE.MYPROCEDURE :OUTPARAMETER, :PARAMETER, :OTHERPARAMETER; END;
 ```
 
-In jubarte you just need to:
+First, you don't need to write the entire statement, just package and procedure name:
 
 ``` javascript
-    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
-    statement
-        .addParameters()
-            .name('CURSORPARAMETER').direction(oracle.OUT_BIND)
-            .name('PARAMETER').value(10)
-            .name('OTHERPARAMETER').value('a string value')
+    let statement = jubarte.statement.create('MYPACKAGE.MYPROCEDURE');
 ```
 
-To get cursor results you need to use 'fetchProcedure' method
+Now, let's add our parameters:
 
 ``` javascript
-    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
-    statement
-        .addParameters()
-            .name('CURSORPARAMETER').direction(oracle.OUT_BIND)
-            .name('PARAMETER').value(10)
-            .name('OTHERPARAMETER').value('a string value')
-        .fetchProcedure()
-        .then((data) => {
-            res.status(200).send(data[0]);
-        })
-        .finally(() => {
-            statement.done();
-        })
-        .catch((err) => {
-            res.status(500).send(err.toString());
-        })
+    let statement = jubarte
+                        .statement
+                        .create('MYPACKAGE.MYPROCEDURE')
+                        .addParameters()
+                            .name('OUTPARAMETER').direction(jubarte.oracledb.BIND_OUT).type(jubarte.oracledb.NUMBER)
+                            .name('PARAMETER').value(10)
+                            .name('OTHERPARAMETER').value('a string value')
 ```
 
-The "data" is an array with all cursors data.So if you have:
-
-* A single cursor:
-``` javascript
-    [
-        [ // my cursor data
-            {id: 1, name: 'Brazil'},
-            {id: 2, name: 'Germany'},
-            {id: 3, name: 'USA'}
-        ]
-    ]
-```
-
-* Two or more:
-``` javascript
-    [
-        [ // my first cursor data
-            {id: 1, name: 'Brazil'},
-            {id: 2, name: 'Germany'},
-            {id: 3, name: 'USA'}
-        ],
-        [ // my second cursor data
-            {id:1, countryId: 1, name: 'São Paulo'},
-            {id:2, countryId: 1, name: 'Franca'},
-            {id:18, countryId: 2 name: 'Berlin'}
-            {id:54, countryId: 3 name: 'New York'}
-        ] 
-        // here we can have more cursors
-        //...
-    ]
-```
-
-Let's do another sample, without cursors.
-
-```
-    BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;
-```
-
-Now we will construct our call
+Finally, call the stored procedure:
 
 ``` javascript
-    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
-    statement
-        .addParameters()
-            .name('OUTPARAMETER').direction(oracle.OUT_BIND)
-            .name('PARAMETER').value('a string value')
+    let statement = jubarte
+                        .statement
+                        .create('MYPACKAGE.MYPROCEDURE')
+                        .addParameters()
+                            .name('OUTPARAMETER').direction(jubarte.oracledb.BIND_OUT).type(jubarte.oracledb.NUMBER)
+                            .name('PARAMETER').value(10)
+                            .name('OTHERPARAMETER').value('a string value')
+                        .executeProcedure()
+                            .then((result) => {
+                                res.status(200).send({
+                                    id: result.outBinds.OUTPARAMETER
+                                });
+                            })
+                            .finally(() => {
+                                statement.done();
+                            })
+                            .catch((err) => {
+                                res.status(500).send(err.toString());
+                            });
 ```
 
-To execute a procedure that don't return cursors use "executeProcedure"
+The parameter 'result' is an object. His outBinds property have output parameters value.
+
+### Execute procedures with cursors
+
+Let's use the following statement to show how jubarte call procedures:
+
+```
+    BEGIN MYPACKAGE.MYPROCEDURE :CURSORPARAMETER, :PARAMETER; END;
+```
+
+First, you don't need to write the entire statement, just package and procedure name:
 
 ``` javascript
-    let statement = jubarte.statement.create('PACKAGE.PROCEDURE')
-    statement
-        .addParameters()
-            .name('OUTPARAMETER').direction(oracle.OUT_BIND)
-            .name('PARAMETER').value('a string value')
-        .executeProcedure()
-        .then((data) => {
-            res.status(200).send(data.outBinds.OUTPARAMETER);
-        })
-        .finally(() => {
-            statement.done();
-        })
-        .catch((err) => {
-            res.status(500).send(err.toString());
-        })
+    let statement = jubarte.statement.create('MYPACKAGE.MYPROCEDURE');
 ```
 
-The out parameters will stay in "data.outBinds" property.
-If you use "executeProcedure" and return a cursor, the cursor will be in "data.outBinds" too but you will need to fetch cursors by your own. 
-To know how fetch cursors see oracledb docs or ["fetchProcedure"](../../lib/statement/statement.js) function code.
-
-The "execute" function works equal "executeProcedure" but you need to pass the entire command.
+Now, let's add our parameters:
 
 ``` javascript
-    let statement = jubarte.statement.create('BEGIN PACKAGE.PROCEDURE :OUTPARAMETER, :PARAMETER; END;')
-    statement
-        .addParameters()
-            .name('OUTPARAMETER').direction(oracle.OUT_BIND)
-            .name('PARAMETER').value('a string value')
-        .execute()
-        .then((data) => {
-            res.status(200).send(data.outBinds.OUTPARAMETER);
-        })
-        .finally(() => {
-            statement.done();
-        })
-        .catch((err) => {
-            res.status(500).send(err.toString());
-        })
+    let statement = jubarte
+                        .statement
+                        .create('MYPACKAGE.MYPROCEDURE')
+                        .addParameters()
+                            .name('CURSORPARAMETER').direction(oracle.OUT_BIND).type(jubarte.oracledb.CURSOR)
+                            .name('PARAMETER').value(10)
 ```
 
-You can use "execute" but I recommend "executeProcedure" and "fetchProcedure" instead.
+Finally, call the stored procedure:
+
+``` javascript
+    let statement = jubarte
+                        .statement
+                        .create('MYPACKAGE.MYPROCEDURE')
+                        .addParameters()
+                            .name('CURSORPARAMETER').direction(oracle.OUT_BIND).type(jubarte.oracledb.CURSOR)
+                            .name('PARAMETER').value(10)
+                        .fetchProcedure()
+                            .then((result) => {
+                                res.status(200).json(result[0]);
+                            })
+                            .finally(() => {
+                                statement.done();
+                            })
+                            .catch((err) => {
+                                res.status(500).send(err.toString());
+                            });
+```
+
+The parameter 'result' is an array. Each item is another array with one cursor data.

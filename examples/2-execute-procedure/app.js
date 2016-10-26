@@ -6,17 +6,20 @@ const express = require('express'),
 app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
         statement.addParameters()
-            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND)
+            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND).type(jubarte.oracledb.CURSOR)
             .name('NAME').value(req.query.name)
-        .execute()
-        .then((data) => {
-            res.status(200).send(data[0]);
+        .fetchProcedure()
+        .then((results) => {
+            res.status(200).send(results[0]);
         })
         .finally(() => {
             statement.done();
         })
         .catch((err) => {
-            res.status(500).send(err.toString());
+            res.status(500).send({
+                code: 500,
+                message: err.toString()
+            });
         });
 });
 
@@ -38,7 +41,10 @@ app.post('/countries', function (req, res) {
             statement.done();
         })
         .catch((err) => {
-            res.status(500).send(err.toString());
+            res.status(500).send({
+                code: 500,
+                message: err.toString()
+            });
         });
 });
 

@@ -34,7 +34,7 @@ After execute, the result will be in data.rows
         });
 ```
 
-# Execute commands with parameters
+### Execute commands with parameters
 
 Let's execute this simple sql command:
 
