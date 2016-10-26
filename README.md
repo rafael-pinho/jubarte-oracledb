@@ -13,10 +13,10 @@ Before start use jubarte-oracledb, see the sections below.
 
 ## Index
 
-1. (About)[#about]
-2. (Features)[#features]
-3. (Examples)[#examples]
-4. (Tests)[#tests]
+1. [About](#about)
+2. [Features](#features)
+3. [Examples](#examples)
+4. [Tests](#tests)
 
 ## About
 
