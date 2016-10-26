@@ -8,11 +8,12 @@ module.exports = (callback) => {
     .addConnectionPool({
         user: process.env.ORACLE_USER, 
         password: process.env.ORACLE_PASSWORD, 
-        connectString: process.env.ORACLE_CONNECTION_STRING 
+        connectString: process.env.ORACLE_CONNECTION_STRING,
+        poolAlias: 'default'
     }).then(() => {
         callback();
     })
     .catch((e) => {
         callback(e);
-    });
+    })
 }

@@ -31,8 +31,7 @@ You can use mocha as you wish too.
 
 ## Docker compose
 
-####If you will make some code do the steps above to have an environment for your development.
-####I had made this docker compose file to people that only want to see if tests are ok and nothing more.
+####You can use docker compose to run tests too.
 
 Do the following to make it works:
 

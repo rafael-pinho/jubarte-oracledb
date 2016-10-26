@@ -1,9 +1,8 @@
-const jubarte = require('../../lib/index.js'),
-      oracledb = require('oracledb');
+const jubarte = require('../../lib/index.js');
 
 module.exports = (callback) => {
     jubarte.initialize.setOracleDefaults({
-        outBinds: oracledb.OBJECT
+        outBinds: jubarte.oracledb.OBJECT
     })
     .addConnectionPool({
         user: process.env.ORACLE_USER, 
