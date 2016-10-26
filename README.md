@@ -40,7 +40,7 @@ Before start use jubarte-oracledb, see the sections below.
 
 ### Transactions
   * jubarte supports transactions.
-  See [this example](./examples/3-execute-many-procedures) to know how it works.
+  See [this example](./examples/3-execute-with-transactions) to know how it works.
     
 ### Promises instead of callbacks
   * works only with promises.
