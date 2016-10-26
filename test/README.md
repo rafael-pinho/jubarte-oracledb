@@ -29,7 +29,7 @@ To be able to connect to oracle, you will need to pass connection string, user n
 Install dependencies with npm install (mocha will be localy instaled). So you can just type 'npm test' to make a full test.
 You can use mocha as you wish too.
 
-## Docker compose
+# Docker compose
 
 ####You can use docker compose to run tests too.
 
