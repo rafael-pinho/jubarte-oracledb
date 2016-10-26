@@ -3,23 +3,6 @@ const express = require('express'),
       databaseConfiguration = require('./configuration.js'),
       jubarte = require('jubarte-oracledb');
 
-app.get('/countries', function (req, res) {
-    let statement = jubarte.statement.create('COUNTRIES.ALL');
-        statement.addParameters()
-            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND)
-            .name('NAME').value(req.query.name)
-        .fetchProcedure()
-        .then((data) => {
-            res.status(200).send(data[0]);
-        })
-        .finally(() => {
-            statement.done();
-        })
-        .catch((err) => {
-            res.status(500).send(err.toString());
-        })
-});
-
 app.post('/countries', function (req, res) {
     let country = req.body,
         statement = jubarte.statement.create();
@@ -43,6 +26,9 @@ app.post('/countries', function (req, res) {
         })
         .then(() => {
             res.status(200).json(country);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((e) => {
             res.status(500).send(err.toString());

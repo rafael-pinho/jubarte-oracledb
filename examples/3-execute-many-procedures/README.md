@@ -1,8 +1,8 @@
-## EXECUTE MANY PROCEDURES IN THE SAME TRANSACTION
+## Execute many procedures in the same transaction
 
-To execute procedures in the same transaction you just need to use the same statement created with "jubarte.statement.create('PACKAGE.PROCEDURE')"
-
-In this sample we have two procedures: the first one insert a country; the second insert a city. We need to insert a country and many cities in the same transaction.
+In this sample we have two procedures: 
+the first one insert a country; the second insert a city. 
+We need to insert a country and many cities in the same transaction.
 
 This is the received object 
 
@@ -13,8 +13,9 @@ This is the received object
     }
 ```
 
+To do this we need to call all the statement with the same object created by jubart.  
 First create the two functions to call the procedures: "addCountry" and "addCity".
-The two need the name of country or city and the "statement", an object created with jubarte.
+The two need the name of country or city and a "statement" object. The last one will be created with jubarte.
 
 ``` javascript
 function addCountry(countryName, statement){
@@ -53,9 +54,6 @@ app.post('/countries', function (req, res) {
         statement = jubarte.statement.create();
 
     addCountry(country.name, statement)
-        .then((result) => {
-            //more code here
-        })
 });
 ```
 
@@ -72,7 +70,7 @@ app.post('/countries', function (req, res) {
             country.id = result.outBinds.ID;
             return country.cities.map(city => {
                 return addCity(city.name, statement);
-            })
+            });
         })
 });
 ```
@@ -129,6 +127,9 @@ app.post('/countries', function (req, res) {
         })
         .then(() => {
             res.status(200).json(country);
+        })
+        .finally(() => {
+            statement.done();
         })
         .catch((e) => {
             res.status(500).send(err.toString());

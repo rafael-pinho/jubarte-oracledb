@@ -27,7 +27,6 @@ Before start use jubarte-oracledb, see the sections below.
 
 ### Connections
   * jubarte-oracledb always use a pool of connections to work
-  * jubarte-oracledb manages connections
   * you just need to configure your connection pools. 
   See [this example](./examples/0-configuration) to know how.
   * never forget to call 'done' method so jubart will know that is time to close connection. 
