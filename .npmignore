@@ -1,6 +1,7 @@
 examples/
+test/
+docs/
 node_modules/
 .idea/
 .vscode/
-test/
 .git
