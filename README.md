@@ -7,7 +7,7 @@ A npm package to make and execute commands in oracledb.
 Before start use jubarte-oracledb, see the sections below. 
 
 ### v3.0 Production Ready. ###
-### v3.0 Has 3 bug fixes and one incompatibility with v2.0 code. See [v3.0 notes](./docs/next-release.md). ###
+### v3.0 Has 3 bug fixes and one incompatibility with v2.0 code. See [v3.0 notes](./docs/v3.md). ###
 ### Now the focus is make better samples and docs. ###
 ### If you have some issues, please, open an issue or send a pull request with the bug fix. ###
 
