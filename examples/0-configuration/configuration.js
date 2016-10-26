@@ -1,4 +1,4 @@
-const jubarte = require('../../lib/index.js');
+const jubarte = require('jubarte-oracledb');
 
 module.exports = (callback) => {
     jubarte.initialize.setOracleDefaults({

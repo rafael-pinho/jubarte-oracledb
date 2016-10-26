@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "name": "execute-procedure",
-  "description": "teach how to execute a procedure",
+  "name": "execute-many-inserts",
+  "description": "teach how to execute many inserts",
   "main": "app.js",
   "author": "Rafael Pinho",
   "license": "ISC",

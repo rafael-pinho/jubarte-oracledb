@@ -7,6 +7,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.14.0",
-    "jubarte-oracledb": "../.."
+    "jubarte-oracledb": "../../"
   }
 }

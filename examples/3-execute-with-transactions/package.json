@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "name": "execute-procedure",
-  "description": "teach how to execute a procedure",
+  "name": "execute-with-transactions",
+  "description": "teach how to execute many statements in the same transaction",
   "main": "app.js",
   "author": "Rafael Pinho",
   "license": "ISC",

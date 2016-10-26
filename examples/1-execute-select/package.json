@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "name": "execute-select",
-  "description": "teach how to execute a select statement",
+  "description": "teach how to execute a simple statement",
   "main": "app.js",
   "author": "Rafael Pinho",
   "license": "ISC",
