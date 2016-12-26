@@ -6,7 +6,7 @@ const express = require('express'),
 app.get('/countries', function (req, res) {
     let statement = jubarte.statement.create('COUNTRIES.ALL');
         statement.addParameters()
-            .name('CURSOR').direction(jubarte.oracledb.OUT_BIND).type(jubarte.oracledb.CURSOR)
+            .name('CURSOR').direction(jubarte.oracledb.BIND_OUT).type(jubarte.oracledb.CURSOR)
             .name('NAME').value(req.query.name)
         .fetchProcedure()
         .then((results) => {
