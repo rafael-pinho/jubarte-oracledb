@@ -30,7 +30,7 @@ app.post('/countries', function (req, res) {
     statement
         .sql('COUNTRIES.INSERT')
         .addParameters()
-            .name('ID').direction(jubarte.oracledb.OUT_BIND)
+            .name('ID').direction(jubarte.oracledb.BIND_OUT)
             .name('NAME').value(req.body.name)
         .executeProcedure()
         .then((data) => {
